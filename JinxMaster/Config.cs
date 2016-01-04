@@ -3,7 +3,7 @@ using EloBuddy.SDK.Menu.Values;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable MemberHidesStaticFromOuterClass
-namespace AddonTemplate
+namespace JinxMaster
 {
     // I can't really help you with my layout of a good config class
     // since everyone does it the way they like it most, go checkout my
@@ -11,7 +11,7 @@ namespace AddonTemplate
     // complex way that I use
     public static class Config
     {
-        private const string MenuName = "AddonTemplate";
+        private const string MenuName = "JinxMasterAddon";
 
         private static readonly Menu Menu;
 
@@ -19,9 +19,9 @@ namespace AddonTemplate
         {
             // Initialize the menu
             Menu = MainMenu.AddMenu(MenuName, MenuName.ToLower());
-            Menu.AddGroupLabel("Welcome to this AddonTemplate!");
-            Menu.AddLabel("To change the menu, please have a look at the");
-            Menu.AddLabel("Config.cs class inside the project, now have fun!");
+            Menu.AddGroupLabel("Welcome to Sivuu Family Addons!");
+            Menu.AddLabel("I hope you can enjoy it !");
+            Menu.AddLabel("Get Penta kill every game with this addon !!!");
 
             // Initialize the modes
             Modes.Initialize();
@@ -47,6 +47,15 @@ namespace AddonTemplate
 
                 // Harass
                 Harass.Initialize();
+                Menu.AddSeparator();
+
+                //Laneclear
+                Laneclear.Initialize();
+                Menu.AddSeparator();
+
+                //Jungleclear
+                Jungleclear.Initialize();
+                //Misc mode
             }
 
             public static void Initialize()
@@ -84,7 +93,7 @@ namespace AddonTemplate
                     _useQ = Menu.Add("comboUseQ", new CheckBox("Use Q"));
                     _useW = Menu.Add("comboUseW", new CheckBox("Use W"));
                     _useE = Menu.Add("comboUseE", new CheckBox("Use E"));
-                    _useR = Menu.Add("comboUseR", new CheckBox("Use R", false)); // Default false
+                    _useR = Menu.Add("comboUseR", new CheckBox("Use R",false)); // Default false
                 }
 
                 public static void Initialize()
@@ -128,6 +137,101 @@ namespace AddonTemplate
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
                     // in the display name will replace it with 0=current 1=min and 2=max value
                     Menu.Add("harassMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
+                }
+
+                public static void Initialize()
+                {
+                }
+            }
+
+            public static class Laneclear
+            {
+                private static readonly CheckBox _useQ;
+
+                public static int Mana
+                {
+                    get { return Menu["LaneclearMana"].Cast<Slider>().CurrentValue; }
+                }
+
+                public static bool UseQ
+                {
+                    get { return _useQ.CurrentValue; }
+                }
+
+
+                static Laneclear()
+                {
+                    // Initialize the menu values
+                    Menu.AddGroupLabel("Laneclear");
+                    _useQ = Menu.Add("LaneclearUseQ", new CheckBox("Use Q"));                    
+                    Menu.Add("LaneclearMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
+                }
+
+                public static void Initialize()
+                {
+                }
+            }
+
+            public static class Jungleclear
+            {
+                private static readonly CheckBox _useQ;
+
+                public static int Mana
+                {
+                    get { return Menu["JungleclearMana"].Cast<Slider>().CurrentValue; }
+                }
+                public static bool UseQ
+                {
+                    get { return _useQ.CurrentValue; }
+                }
+
+
+                static Jungleclear()
+                {
+                    // Initialize the menu values
+                    Menu.AddGroupLabel("Jungleclear");
+                    _useQ = Menu.Add("JungleclearUseQ", new CheckBox("Use Q"));
+                    Menu.Add("JungleclearMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
+
+                }
+
+                public static void Initialize()
+                {
+                }
+            }
+
+            public static class Permaactive
+            {
+                private static readonly CheckBox _useQ;
+                private static readonly CheckBox _useW;
+                private static readonly CheckBox _useE;
+                private static readonly CheckBox _useR;
+
+                public static bool UseQ
+                {
+                    get { return _useQ.CurrentValue; }
+                }
+                public static bool UseW
+                {
+                    get { return _useW.CurrentValue; }
+                }
+                public static bool UseE
+                {
+                    get { return _useE.CurrentValue; }
+                }
+                public static bool UseR
+                {
+                    get { return _useR.CurrentValue; }
+                }
+
+                static Permaactive()
+                {
+                    // Initialize the menu values
+                    Menu.AddGroupLabel("Permaactive");
+                    _useQ = Menu.Add("PermaactiveUseQ", new CheckBox("Use Q"));
+                    _useW = Menu.Add("PermaactiveUseW", new CheckBox("Use W"));
+                    _useE = Menu.Add("PermaactiveUseE", new CheckBox("Use E"));
+                    _useR = Menu.Add("PermaactiveUseR", new CheckBox("Use R", false)); // Default false
                 }
 
                 public static void Initialize()

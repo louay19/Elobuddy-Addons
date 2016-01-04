@@ -1,6 +1,6 @@
 ﻿using EloBuddy.SDK;
 
-namespace AddonTemplate.Modes
+namespace JinxMaster.Modes
 {
     public sealed class Flee : ModeBase
     {

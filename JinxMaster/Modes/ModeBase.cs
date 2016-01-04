@@ -1,6 +1,6 @@
 ﻿using EloBuddy.SDK;
 
-namespace AddonTemplate.Modes
+namespace JinxMaster.Modes
 {
     public abstract class ModeBase
     {
@@ -12,7 +12,7 @@ namespace AddonTemplate.Modes
         {
             get { return SpellManager.Q; }
         }
-        protected Spell.Chargeable W
+        protected Spell.Skillshot W
         {
             get { return SpellManager.W; }
         }
@@ -20,7 +20,7 @@ namespace AddonTemplate.Modes
         {
             get { return SpellManager.E; }
         }
-        protected Spell.Targeted R
+        protected Spell.Skillshot R
         {
             get { return SpellManager.R; }
         }

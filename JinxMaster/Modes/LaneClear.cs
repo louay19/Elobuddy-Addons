@@ -1,6 +1,10 @@
-﻿using EloBuddy.SDK;
+﻿using EloBuddy;
+using EloBuddy.SDK;
 
-namespace AddonTemplate.Modes
+// Using the config like this makes your life easier, trust me
+using Settings = JinxMaster.Config.Modes.Laneclear;
+
+namespace JinxMaster.Modes
 {
     public sealed class LaneClear : ModeBase
     {
@@ -12,7 +16,40 @@ namespace AddonTemplate.Modes
 
         public override void Execute()
         {
-            // TODO: Add laneclear logic here
+            var target = Orbwalker.LastTarget;
+                if (Settings.UseQ && Q.IsReady())
+                {
+                    if (target.IsValidTarget(Q.Range)
+                        && ObjectManager.Player.Distance(target) > 525f
+                        && !Extensions.Fishbone() && CheckFarmQ(target) && Player.Instance.ManaPercent > Settings.Mana)
+                    {
+                        Q.Cast();
+                    }
+                    if ((target.IsValidTarget(Q.Range)
+                        && ObjectManager.Player.Distance(target) < 525f
+                        && Extensions.Fishbone()) ||(Player.Instance.ManaPercent < Settings.Mana && Extensions.Fishbone()))
+                    {
+                        Q.Cast();
+                    }
+                }
+                // TODO: Add laneclear logic here
+            }
+        
+
+        private bool CheckFarmQ(AttackableUnit target)
+        {
+            int countLasthit = 0;
+            if (target.IsValidTarget(Q.Range))
+            {
+                var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, target.Position, 200);
+                
+                foreach (var minion in minions)
+                {
+                    if (Orbwalker.IsLasthittableMinion(minion)) countLasthit++;
+                }
+            }
+            if (countLasthit >= 3) return true;
+            else return false;
         }
     }
 }
