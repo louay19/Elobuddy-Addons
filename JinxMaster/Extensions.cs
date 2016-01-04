@@ -18,10 +18,27 @@ namespace JinxMaster
             return 670f + Player.Instance.BoundingRadius + 25 * SpellManager.Q.Level;
         }
 
-        public static float GetDamageToTarget(AttackableUnit tar)
+        public static float GetDamageToTarget(SpellSlot spell, Obj_AI_Base tar)
         {
+            float damage = 0;
+            switch (spell)
+            {
+                case SpellSlot.Q:
+                    damage = new float[] { 0, 0, 0, 0, 0 }[SpellManager.Q.Level - 1] + 1.1f * Player.Instance.TotalAttackDamage;
+                    return Player.Instance.CalculateDamageOnUnit(tar, DamageType.Physical, damage);
+                case SpellSlot.W:
+                    damage = new float[] { 10, 60, 110, 160, 210 }[SpellManager.W.Level - 1] + 1.4f * Player.Instance.TotalAttackDamage;
+                    return Player.Instance.CalculateDamageOnUnit(tar, DamageType.Physical, damage);
+                case SpellSlot.E:
+                    damage = new float[] { 80, 135, 190, 245, 300 }[SpellManager.E.Level - 1] + 1.0f * Player.Instance.TotalMagicalDamage;
+                    return Player.Instance.CalculateDamageOnUnit(tar, DamageType.Magical, damage);
+                case SpellSlot.R:
+                    damage = new float[] { 25, 35, 45 }[SpellManager.R.Level - 1] + new float[] { 25, 30, 35 }[SpellManager.R.Level - 1] / 100 * (tar.MaxHealth - tar.Health) + 0.1f * Player.Instance.FlatPhysicalDamageMod;
+                    return Player.Instance.CalculateDamageOnUnit(tar, DamageType.Physical, damage);
+            }
             return 0;
         }
+
         public static bool HasUndyingBuff(this AIHeroClient target)
         {
             // Various buffs

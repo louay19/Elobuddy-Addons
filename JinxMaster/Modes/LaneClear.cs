@@ -45,10 +45,10 @@ namespace JinxMaster.Modes
                 
                 foreach (var minion in minions)
                 {
-                    if (Orbwalker.IsLasthittableMinion(minion)) countLasthit++;
+                    if (Extensions.GetDamageToTarget(SpellSlot.Q,minion) > minion.Health) countLasthit++;
                 }
             }
-            if (countLasthit >= 3) return true;
+            if (countLasthit >= 2) return true;
             else return false;
         }
     }

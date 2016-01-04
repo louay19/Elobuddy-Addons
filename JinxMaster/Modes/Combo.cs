@@ -25,13 +25,13 @@ namespace JinxMaster.Modes
             {              
                 if (target.IsValidTarget(Q.Range+150)
                     && ObjectManager.Player.Distance(target) > 525f
-                    && !Extensions.Fishbone())
+                    && !Extensions.Fishbone() && Player.Instance.Mana > 100)
                 {
                     Q.Cast();
                 }
-                if (target.IsValidTarget(Q.Range)
+                if ((target.IsValidTarget(Q.Range)
                     && ObjectManager.Player.Distance(target) < 525f
-                    && Extensions.Fishbone())
+                    && Extensions.Fishbone()) || (Player.Instance.Mana < 100 && Extensions.Fishbone())) 
                 {
                     Q.Cast();
                 }

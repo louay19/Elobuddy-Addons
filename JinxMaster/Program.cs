@@ -27,7 +27,7 @@ namespace JinxMaster
                 // therefore we return
                 return;
             }
-
+            Hacks.RenderWatermark = false;
             // Initialize the classes that we need
             Config.Initialize();
             SpellManager.Initialize();
