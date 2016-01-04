@@ -2,7 +2,7 @@
 using EloBuddy.SDK;
 
 // Using the config like this makes your life easier, trust me
-using Settings = JinxMaster.Config.Modes.Permaactive;
+using Settings = JinxMaster.Config.Modes.Misc;
 
 namespace JinxMaster.Modes
 {
@@ -19,10 +19,11 @@ namespace JinxMaster.Modes
             var enemyheroes = EntityManager.Heroes.Enemies;
             foreach(var h in enemyheroes)
             {
-                if (h.IsValidTarget(10000) && Extensions.GetDamageToTarget(SpellSlot.R, h) > h.Health)
+                int timeflymissile = (int) Player.Instance.Distance(h) / R.Speed;
+                if (h.IsValidTarget(10000) && Extensions.GetDamageToTarget(SpellSlot.R, h) > Prediction.Health.GetPrediction(h,timeflymissile+2))
                 {
                     var Pred = R.GetPrediction(h);
-                    if(Pred.HitChancePercent > 70)
+                    if(Pred.HitChancePercent > Settings.HitChance )
                     {
                         R.Cast(Pred.CastPosition);
                     }

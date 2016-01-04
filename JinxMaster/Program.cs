@@ -41,18 +41,25 @@ namespace JinxMaster
 
         private static void Interrupter_OnInterruptableSpell(Obj_AI_Base sender, Interrupter.InterruptableSpellEventArgs args)
         {
-            if(sender.Team != ObjectManager.Player.Team)
+            if(sender.IsEnemy && Config.Modes.Misc.UseE && SpellManager.E.IsReady() && SpellManager.E.IsInRange(sender))
             {
-                SpellManager.E.Cast(sender.Position);
+                //Cast E on interrupter
+                SpellManager.E.Cast(sender);
             }
             throw new NotImplementedException();
         }
 
         private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs args)
         {
-            if(sender.Team != ObjectManager.Player.Team)
+            if (sender.IsEnemy && Config.Modes.Misc.UseE && SpellManager.E.IsReady() && SpellManager.E.IsInRange(args.End))
             {
-                SpellManager.E.Cast(args.End);
+                // Cast E on the gapcloser caster
+                SpellManager.E.Cast(sender);
+            }
+            if (sender.IsEnemy && Config.Modes.Misc.UseW && SpellManager.W.IsReady() && SpellManager.W.IsInRange(args.End))
+            {
+                // Cast W on the gapcloser caster
+                SpellManager.W.Cast(sender);
             }
             throw new NotImplementedException();
         }

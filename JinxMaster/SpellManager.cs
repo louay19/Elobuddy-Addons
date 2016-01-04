@@ -26,7 +26,7 @@ namespace JinxMaster
             Q = new Spell.Active(SpellSlot.Q, 700);
             W = new Spell.Skillshot(SpellSlot.W, 1500, EloBuddy.SDK.Enumerations.SkillShotType.Linear, 750, 3200, 80);
             E = new Spell.Skillshot(SpellSlot.E, 900, EloBuddy.SDK.Enumerations.SkillShotType.Circular, 750, 1700, 50);
-            R = new Spell.Skillshot(SpellSlot.R, 25000, EloBuddy.SDK.Enumerations.SkillShotType.Linear, 500, 1700, 225)
+            R = new Spell.Skillshot(SpellSlot.R, 10000, EloBuddy.SDK.Enumerations.SkillShotType.Linear, 750, 1700, 80)
             {
                 AllowedCollisionCount = int.MaxValue
             };    

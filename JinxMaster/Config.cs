@@ -56,6 +56,7 @@ namespace JinxMaster
                 //Jungleclear
                 Jungleclear.Initialize();
                 //Misc mode
+                Misc.Initialize();
             }
 
             public static void Initialize()
@@ -200,16 +201,16 @@ namespace JinxMaster
                 }
             }
 
-            public static class Permaactive
+            public static class Misc
             {
-                private static readonly CheckBox _useQ;
+
                 private static readonly CheckBox _useW;
                 private static readonly CheckBox _useE;
                 private static readonly CheckBox _useR;
 
-                public static bool UseQ
+                public static int HitChance
                 {
-                    get { return _useQ.CurrentValue; }
+                    get { return Menu["HitChance"].Cast<Slider>().CurrentValue; }
                 }
                 public static bool UseW
                 {
@@ -224,14 +225,15 @@ namespace JinxMaster
                     get { return _useR.CurrentValue; }
                 }
 
-                static Permaactive()
+
+                static Misc()
                 {
                     // Initialize the menu values
-                    Menu.AddGroupLabel("Permaactive");
-                    _useQ = Menu.Add("PermaactiveUseQ", new CheckBox("Use Q"));
-                    _useW = Menu.Add("PermaactiveUseW", new CheckBox("Use W"));
-                    _useE = Menu.Add("PermaactiveUseE", new CheckBox("Use E"));
-                    _useR = Menu.Add("PermaactiveUseR", new CheckBox("Use R", false)); // Default false
+                    Menu.AddGroupLabel("Misc Mode");
+                    Menu.Add("HitChance", new Slider("Hit chance for all skills in percent ({0}%)", 70));
+                    _useW = Menu.Add("GapcloseW", new CheckBox("Use W To Gapclose"));
+                    _useE = Menu.Add("GapcloseE", new CheckBox("Use E To Gapclose"));
+                    _useR = Menu.Add("LasthitR", new CheckBox("Use R To Last Hit"));
                 }
 
                 public static void Initialize()

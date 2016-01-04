@@ -1,4 +1,5 @@
-﻿using EloBuddy;
+﻿using System.Linq;
+using EloBuddy;
 using EloBuddy.SDK;
 
 // Using the config like this makes your life easier, trust me
@@ -16,18 +17,18 @@ namespace JinxMaster.Modes
 
         public override void Execute()
         {
-            var target = Orbwalker.LastTarget;
-                if (Settings.UseQ && Q.IsReady())
+            var target = EntityManager.MinionsAndMonsters.GetLaneMinions().Where(o => o.Health < 1.1f*Player.Instance.GetAutoAttackDamage(o)
+            && Player.Instance.IsInRange(o, Extensions.FishBoneRange())).First();
+                if (Settings.UseQ && Q.IsReady() && target != null)
                 {
-                    if (target.IsValidTarget(Q.Range)
+                    Orbwalker.ForcedTarget = target;
+                    if (target.IsValidTarget(Extensions.FishBoneRange())
                         && ObjectManager.Player.Distance(target) > 525f
                         && !Extensions.Fishbone() && CheckFarmQ(target) && Player.Instance.ManaPercent > Settings.Mana)
                     {
                         Q.Cast();
                     }
-                    if ((target.IsValidTarget(Q.Range)
-                        && ObjectManager.Player.Distance(target) < 525f
-                        && Extensions.Fishbone()) ||(Player.Instance.ManaPercent < Settings.Mana && Extensions.Fishbone()))
+                    if  (Extensions.Fishbone()) 
                     {
                         Q.Cast();
                     }
@@ -38,18 +39,9 @@ namespace JinxMaster.Modes
 
         private bool CheckFarmQ(AttackableUnit target)
         {
-            int countLasthit = 0;
-            if (target.IsValidTarget(Q.Range))
-            {
-                var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, target.Position, 200);
-                
-                foreach (var minion in minions)
-                {
-                    if (Extensions.GetDamageToTarget(SpellSlot.Q,minion) > minion.Health) countLasthit++;
-                }
-            }
-            if (countLasthit >= 2) return true;
-            else return false;
+                var minions = EntityManager.MinionsAndMonsters.GetLaneMinions().Where(m => target.IsInRange(m,200) && Player.Instance.GetAutoAttackDamage(m) > m.Health);   
+                if (minions.Count() >= 2) return true;
+                else return false;             
         }
     }
 }

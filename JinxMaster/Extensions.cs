@@ -33,7 +33,10 @@ namespace JinxMaster
                     damage = new float[] { 80, 135, 190, 245, 300 }[SpellManager.E.Level - 1] + 1.0f * Player.Instance.TotalMagicalDamage;
                     return Player.Instance.CalculateDamageOnUnit(tar, DamageType.Magical, damage);
                 case SpellSlot.R:
-                    damage = new float[] { 25, 35, 45 }[SpellManager.R.Level - 1] + new float[] { 25, 30, 35 }[SpellManager.R.Level - 1] / 100 * (tar.MaxHealth - tar.Health) + 0.1f * Player.Instance.FlatPhysicalDamageMod;
+                    if(Player.Instance.Distance(tar) <1350)
+                        damage = new float[] { 25, 35, 45 }[SpellManager.R.Level - 1] + new float[] { 25, 30, 35 }[SpellManager.R.Level - 1] / 100 * (tar.MaxHealth - tar.Health) + 0.1f * Player.Instance.FlatPhysicalDamageMod;
+                    else
+                        damage = new float[] {250,350,450}[SpellManager.R.Level - 1] + new float[] { 25, 30, 35 }[SpellManager.R.Level - 1] / 100 * (tar.MaxHealth - tar.Health) + 1f * Player.Instance.FlatPhysicalDamageMod;
                     return Player.Instance.CalculateDamageOnUnit(tar, DamageType.Physical, damage);
             }
             return 0;

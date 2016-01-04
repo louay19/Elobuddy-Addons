@@ -21,15 +21,15 @@ namespace JinxMaster.Modes
             // the menu in the Config class!
             var target = TargetSelector.GetTarget(1500f, DamageType.Physical);
 
-            if (Settings.UseQ && Q.IsReady())
+            if (Settings.UseQ && Q.IsReady() && target != null)
             {              
-                if (target.IsValidTarget(Q.Range+150)
+                if (target.IsValidTarget(Extensions.FishBoneRange())
                     && ObjectManager.Player.Distance(target) > 525f
                     && !Extensions.Fishbone() && Player.Instance.Mana > 100)
                 {
                     Q.Cast();
                 }
-                if ((target.IsValidTarget(Q.Range)
+                if ((target.IsValidTarget(Extensions.FishBoneRange())
                     && ObjectManager.Player.Distance(target) < 525f
                     && Extensions.Fishbone()) || (Player.Instance.Mana < 100 && Extensions.Fishbone())) 
                 {
@@ -42,7 +42,7 @@ namespace JinxMaster.Modes
                 if (target.IsValidTarget(W.Range) && ObjectManager.Player.Distance(target) > 525f)
                 {
                     var Pred = W.GetPrediction(target);
-                    if (Pred.HitChancePercent > 70)
+                    if (Pred.HitChancePercent > Config.Modes.Misc.HitChance)
                     W.Cast(Pred.CastPosition);
                 }
             }
@@ -52,7 +52,7 @@ namespace JinxMaster.Modes
                 if (target.IsValidTarget(E.Range))
                 {
                     var Pred = E.GetPrediction(target);
-                    if (Pred.HitChancePercent > 70)
+                    if (Pred.HitChancePercent > Config.Modes.Misc.HitChance)
                         E.Cast(Pred.CastPosition);
                 }
             }
@@ -62,7 +62,7 @@ namespace JinxMaster.Modes
                 if (target.IsValidTarget(R.Range) && ObjectManager.Player.Distance(target) > 525f)
                 {
                     var Pred = R.GetPrediction(target);
-                    if (Pred.HitChancePercent > 70)
+                    if (Pred.HitChancePercent > Config.Modes.Misc.HitChance)
                         R.Cast(Pred.CastPosition);
                 }
             }
