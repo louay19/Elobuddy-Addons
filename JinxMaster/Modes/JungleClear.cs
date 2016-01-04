@@ -23,7 +23,7 @@ namespace JinxMaster.Modes
 
             if (Settings.UseQ && Q.IsReady() && target != null)
             {
-                if (target.IsValidTarget(Extensions.FishBoneRange())
+                if (target.IsValidTarget(Q.Range +150)
                     && ObjectManager.Player.Distance(target) > 525f
                     && !Extensions.Fishbone() && Player.Instance.ManaPercent > Settings.Mana)
                 {

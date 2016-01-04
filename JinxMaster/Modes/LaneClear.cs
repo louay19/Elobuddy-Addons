@@ -22,7 +22,7 @@ namespace JinxMaster.Modes
                 if (Settings.UseQ && Q.IsReady() && target != null)
                 {
                     Orbwalker.ForcedTarget = target;
-                    if (target.IsValidTarget(Extensions.FishBoneRange())
+                    if (target.IsValidTarget(Q.Range +150)
                         && ObjectManager.Player.Distance(target) > 525f
                         && !Extensions.Fishbone() && CheckFarmQ(target) && Player.Instance.ManaPercent > Settings.Mana)
                     {
