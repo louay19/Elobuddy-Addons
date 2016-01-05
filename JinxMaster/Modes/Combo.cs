@@ -20,7 +20,6 @@ namespace JinxMaster.Modes
             // See how I used the Settings.UseQ here, this is why I love my way of using
             // the menu in the Config class!
             var target = TargetSelector.GetTarget(1500f, DamageType.Physical);
-
             if (Settings.UseQ && Q.IsReady() && Player.Instance.Distance(target) < Q.Range + 150 && target.IsValid)
             {        
                 if (ObjectManager.Player.Distance(target) <= 525f

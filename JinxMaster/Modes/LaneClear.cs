@@ -25,13 +25,15 @@ namespace JinxMaster.Modes
             {
                 Orbwalker.ForcedTarget = target;
                 if (!Extensions.FishBoneActive
-                    && CheckFarmQ(target) 
+                    && CheckFarmQ(target)
                     && Player.Instance.ManaPercent > Settings.Mana
                    )
                 {
                     Q.Cast();
                 }
+                else Extensions.OffFishBone();
             }
+            
                 // TODO: Add laneclear logic here
             }
         

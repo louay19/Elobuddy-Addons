@@ -29,6 +29,7 @@ namespace JinxMaster.Modes
                 {
                     Q.Cast();
                 }
+                else Extensions.OffFishBone();
             }
         }
     }

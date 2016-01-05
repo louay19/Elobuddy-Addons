@@ -19,7 +19,6 @@ namespace JinxMaster.Modes
         {
             // TODO: Add permaactive logic here, good for spells like Ignite or Smite
             Ultimate();
-            OffFishBone();
         }
 
         private void Ultimate()
@@ -36,14 +35,6 @@ namespace JinxMaster.Modes
                         R.Cast(Pred.CastPosition);
                     }
                 }
-            }
-        }
-
-        private void OffFishBone()
-        {
-            if (Extensions.FishBoneActive && !Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo))
-            {
-                Q.Cast();
             }
         }
     }
