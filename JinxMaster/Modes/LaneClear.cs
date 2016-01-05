@@ -42,7 +42,7 @@ namespace JinxMaster.Modes
         {
             var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, target.Position, 185)
                 .Where(l => l.Health < Player.Instance.GetAutoAttackDamage(l) * 1.1f);
-            return minions.Count() > 1;         
+            return minions.Count() > Config.Modes.Misc.NumberQKill;         
         }
     }
 }

@@ -45,6 +45,7 @@ namespace JinxMaster
 
         private static void AIHeroClient_OnBuffGain(Obj_AI_Base sender, Obj_AI_BaseBuffGainEventArgs args)
         {
+            if (!Config.Modes.Misc.UseE) return;
             var heroes = EntityManager.Heroes.Enemies;
             foreach (var h in heroes)
             {
@@ -67,6 +68,7 @@ namespace JinxMaster
 
         private static void Interrupter_OnInterruptableSpell(Obj_AI_Base sender, Interrupter.InterruptableSpellEventArgs args)
         {
+            if (!Config.Modes.Misc.UseE) return;
             if (sender.IsEnemy && Config.Modes.Misc.UseE && SpellManager.E.IsReady() && SpellManager.E.IsInRange(sender))
             {
                 //Cast E on interrupter
@@ -77,6 +79,7 @@ namespace JinxMaster
 
         private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs args)
         {
+            if (!Config.Modes.Misc.UseE || !Config.Modes.Misc.UseW) return;
             if (sender.IsEnemy && Config.Modes.Misc.UseE && SpellManager.E.IsReady() && SpellManager.E.IsInRange(args.End))
             {
                 // Cast E on the gapcloser caster

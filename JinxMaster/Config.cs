@@ -207,7 +207,10 @@ namespace JinxMaster
                 private static readonly CheckBox _useW;
                 private static readonly CheckBox _useE;
                 private static readonly CheckBox _useR;
-
+                public static int NumberQKill
+                {
+                    get { return Menu["NumberKillByQ"].Cast<Slider>().CurrentValue; }
+                }
                 public static int HitChance
                 {
                     get { return Menu["HitChance"].Cast<Slider>().CurrentValue; }
@@ -230,9 +233,10 @@ namespace JinxMaster
                 {
                     // Initialize the menu values
                     Menu.AddGroupLabel("Misc Mode");
+                    Menu.Add("NumberKillByQ", new Slider("Number minions to use Q ({0})",2,0,5));
                     Menu.Add("HitChance", new Slider("Hit chance for all skills in percent ({0}%)", 70));
-                    _useW = Menu.Add("GapcloseW", new CheckBox("Use W To Gapclose"));
-                    _useE = Menu.Add("GapcloseE", new CheckBox("Use E To Gapclose"));
+                    _useW = Menu.Add("UseW", new CheckBox("Use W To Gapclose"));
+                    _useE = Menu.Add("UseE", new CheckBox("Use E To Gapclose"));
                     _useR = Menu.Add("LasthitR", new CheckBox("Use R To Last Hit"));
                 }
 
