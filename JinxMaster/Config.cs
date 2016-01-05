@@ -70,6 +70,10 @@ namespace JinxMaster
                 private static readonly CheckBox _useE;
                 private static readonly CheckBox _useR;
 
+                public static int ManaSwitchQ
+                {
+                    get { return Menu["manaSwitchQ"].Cast<Slider>().CurrentValue; }
+                }
                 public static bool UseQ
                 {
                     get { return _useQ.CurrentValue; }
@@ -91,6 +95,7 @@ namespace JinxMaster
                 {
                     // Initialize the menu values
                     Menu.AddGroupLabel("Combo");
+                    Menu.Add("manaSwitchQ", new Slider("Low mana to use Q ({0}%): ", 0, 0, 100));
                     _useQ = Menu.Add("comboUseQ", new CheckBox("Use Q"));
                     _useW = Menu.Add("comboUseW", new CheckBox("Use W"));
                     _useE = Menu.Add("comboUseE", new CheckBox("Use E"));

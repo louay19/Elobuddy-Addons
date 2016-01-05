@@ -21,6 +21,14 @@ namespace JinxMaster.Modes
                 .Where(j => j.Health < 1.1f*Player.Instance.GetAutoAttackDamage(j) 
                             && Player.Instance.Distance(j) < Q.Range).First();
 
+            if (Q.IsReady() && Extensions.FishBoneActive)
+                {
+                    Q.Cast();
+                    Chat.Print("Q Name: " + Q.Name + "\n"
+                               + "Q State: " + Q.State + "\n");
+                }
+
+
             if (target != null && Settings.UseQ && Q.IsReady())
             {
                 if (!Extensions.FishBoneActive
@@ -29,8 +37,9 @@ namespace JinxMaster.Modes
                 {
                     Q.Cast();
                 }
-                else Extensions.OffFishBone();
+               
             }
+           
         }
     }
 }

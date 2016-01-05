@@ -30,7 +30,7 @@ namespace JinxMaster.Modes
                 }      
                 if (ObjectManager.Player.Distance(target) > 525f
                     && !Extensions.FishBoneActive
-                    && Player.Instance.Mana > 100
+                    && Player.Instance.ManaPercent > Settings.ManaSwitchQ
                    )
                 {
                     Q.Cast();

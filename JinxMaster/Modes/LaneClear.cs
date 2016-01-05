@@ -21,6 +21,14 @@ namespace JinxMaster.Modes
                 .Where(o => o.Health < 1.1f*Player.Instance.GetAutoAttackDamage(o)
                             && Player.Instance.Distance(o) < Q.Range).First();
 
+            Chat.Print("Range is: " + Player.Instance.AttackRange);
+
+            if (Q.IsReady() && Extensions.FishBoneActive)
+            {
+                Q.Cast();
+            }
+
+
             if (target != null && Settings.UseQ && Q.IsReady() && target.IsValid)
             {
                 Orbwalker.ForcedTarget = target;
@@ -31,11 +39,12 @@ namespace JinxMaster.Modes
                 {
                     Q.Cast();
                 }
-                else Extensions.OffFishBone();
+               
             }
             
-                // TODO: Add laneclear logic here
-            }
+
+            // TODO: Add laneclear logic here
+        }
         
 
         private bool CheckFarmQ(Obj_AI_Base target)

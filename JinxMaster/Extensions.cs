@@ -9,16 +9,12 @@ namespace JinxMaster
     {
         public static bool FishBoneActive
         {
-            get { return Player.Instance.AttackRange > 525;}
-        }
-
-        public static void OffFishBone()
-        {
-            if (Extensions.FishBoneActive)
-            {
-                SpellManager.Q.Cast();
+            get
+            {              
+                return Player.Instance.AttackRange > 525f;
             }
         }
+
         public static float GetDamageToTarget(SpellSlot spell, Obj_AI_Base tar)
         {
             float damage = 0;
