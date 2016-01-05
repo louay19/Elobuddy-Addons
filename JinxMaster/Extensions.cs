@@ -7,17 +7,10 @@ namespace JinxMaster
 {
     public static class Extensions
     {
-        public static bool Fishbone()
+        public static bool FishBoneActive
         {
-            if (ObjectManager.Player.AttackRange > 525) return true;
-            else return false;
+            get { return Player.Instance.AttackRange > 525;}
         }
-
-        public static float FishBoneRange()
-        {
-            return 670f + Player.Instance.BoundingRadius + 25 * SpellManager.Q.Level;
-        }
-
         public static float GetDamageToTarget(SpellSlot spell, Obj_AI_Base tar)
         {
             float damage = 0;

@@ -1,5 +1,6 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
+using System.Linq;
 
 namespace JinxMaster.Modes
 {
@@ -13,15 +14,8 @@ namespace JinxMaster.Modes
 
         public override void Execute()
         {
-            // TODO: Add lasthit logic here
-            //if (Q.IsReady())
-            //{
-            //    var target = TargetSelector.GetTarget(Q.Range, DamageType.Physical);
-            //    if (target != null)
-            //    {
-            //        Q.Cast(target);
-            //    }
-            //}
+            var minion = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Player.Instance.Position, Q.Range).Where(m => m.Health < Player.Instance.GetAutoAttackDamage(m) * 1.1f).First();
+            Orbwalker.ForcedTarget = minion;
         }
     }
 }

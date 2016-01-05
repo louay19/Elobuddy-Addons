@@ -1,4 +1,5 @@
-﻿using EloBuddy.SDK;
+﻿using EloBuddy;
+using EloBuddy.SDK;
 
 namespace JinxMaster.Modes
 {
@@ -12,6 +13,7 @@ namespace JinxMaster.Modes
 
         public override void Execute()
         {
+            E.Cast(Player.Instance);
             // TODO: Add flee logic here
         }
     }

@@ -18,17 +18,15 @@ namespace JinxMaster.Modes
         public override void Execute()
         {
             var target = EntityManager.MinionsAndMonsters.GetLaneMinions().Where(o => o.Health < 1.1f*Player.Instance.GetAutoAttackDamage(o)
-            && Player.Instance.IsInRange(o, Extensions.FishBoneRange())).First();
-                if (Settings.UseQ && Q.IsReady() && target != null)
+            && Player.Instance.IsInRange(o,Q.Range+150)).First();
+                if (Settings.UseQ && Q.IsReady() && target.IsValidTarget(Q.Range + 150))
                 {
                     Orbwalker.ForcedTarget = target;
-                    if (target.IsValidTarget(Q.Range +150)
-                        && ObjectManager.Player.Distance(target) > 525f
-                        && !Extensions.Fishbone() && CheckFarmQ(target) && Player.Instance.ManaPercent > Settings.Mana)
-                    {
-                        Q.Cast();
-                    }
-                    if  (Extensions.Fishbone()) 
+                    if (ObjectManager.Player.Distance(target) > 525f
+                        && !Extensions.FishBoneActive
+                        && CheckFarmQ(target) 
+                        && Player.Instance.ManaPercent > Settings.Mana
+                        )
                     {
                         Q.Cast();
                     }
@@ -37,11 +35,9 @@ namespace JinxMaster.Modes
             }
         
 
-        private bool CheckFarmQ(AttackableUnit target)
+        private bool CheckFarmQ(Obj_AI_Base target)
         {
-                var minions = EntityManager.MinionsAndMonsters.GetLaneMinions().Where(m => target.IsInRange(m,200) && Player.Instance.GetAutoAttackDamage(m) > m.Health);   
-                if (minions.Count() >= 2) return true;
-                else return false;             
+            return target.CountAlliesInRange(150) > 2;         
         }
     }
 }

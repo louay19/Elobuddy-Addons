@@ -34,35 +34,10 @@ namespace JinxMaster
             ModeManager.Initialize();
 
             // Listen to events we need
-            Drawing.OnDraw += OnDraw;
-            Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
-            Interrupter.OnInterruptableSpell += Interrupter_OnInterruptableSpell;
+            Drawing.OnDraw += OnDraw;          
         }
 
-        private static void Interrupter_OnInterruptableSpell(Obj_AI_Base sender, Interrupter.InterruptableSpellEventArgs args)
-        {
-            if(sender.IsEnemy && Config.Modes.Misc.UseE && SpellManager.E.IsReady() && SpellManager.E.IsInRange(sender))
-            {
-                //Cast E on interrupter
-                SpellManager.E.Cast(sender);
-            }
-            throw new NotImplementedException();
-        }
-
-        private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs args)
-        {
-            if (sender.IsEnemy && Config.Modes.Misc.UseE && SpellManager.E.IsReady() && SpellManager.E.IsInRange(args.End))
-            {
-                // Cast E on the gapcloser caster
-                SpellManager.E.Cast(sender);
-            }
-            if (sender.IsEnemy && Config.Modes.Misc.UseW && SpellManager.W.IsReady() && SpellManager.W.IsInRange(args.End))
-            {
-                // Cast W on the gapcloser caster
-                SpellManager.W.Cast(sender);
-            }
-            throw new NotImplementedException();
-        }
+       
 
         private static void OnDraw(EventArgs args)
         {
