@@ -208,9 +208,7 @@ namespace JinxMaster
             public static class Misc
             {
 
-                private static readonly CheckBox _useW;
-                private static readonly CheckBox _useE;
-                private static readonly CheckBox _useR;
+
                 public static int NumberQKill
                 {
                     get { return Menu["NumberKillByQ"].Cast<Slider>().CurrentValue; }
@@ -219,17 +217,25 @@ namespace JinxMaster
                 {
                     get { return Menu["HitChance"].Cast<Slider>().CurrentValue; }
                 }
-                public static bool UseW
+                public static bool GCUseW
                 {
-                    get { return _useW.CurrentValue; }
+                    get { return Menu["GapCloseUseW"].Cast<CheckBox>().CurrentValue; }
                 }
-                public static bool UseE
+                public static bool GCUseE
                 {
-                    get { return _useE.CurrentValue; }
+                    get { return Menu["GapCloseUseE"].Cast<CheckBox>().CurrentValue; }
                 }
-                public static bool UseR
+                public static bool IRUseE
                 {
-                    get { return _useR.CurrentValue; }
+                    get { return Menu["InteruptUseE"].Cast<CheckBox>().CurrentValue; }
+                }
+                public static bool CCUseE
+                {
+                    get { return Menu["CCUseE"].Cast<CheckBox>().CurrentValue; }
+                }
+                public static bool LHUseR
+                {
+                    get { return Menu["LasthitR"].Cast<CheckBox>().CurrentValue; }
                 }
 
 
@@ -239,9 +245,11 @@ namespace JinxMaster
                     Menu.AddGroupLabel("Misc Mode");
                     Menu.Add("NumberKillByQ", new Slider("Number minions to use Q ({0})",2,0,5));
                     Menu.Add("HitChance", new Slider("Hit chance for all skills in percent ({0}%)", 70));
-                    _useW = Menu.Add("UseW", new CheckBox("Use W To Gapclose"));
-                    _useE = Menu.Add("UseE", new CheckBox("Use E To Gapclose"));
-                    _useR = Menu.Add("LasthitR", new CheckBox("Use R To Last Hit"));
+                    Menu.Add("GapCloseUseW", new CheckBox("Use W To Gapclose"));
+                    Menu.Add("GapCloseUseE", new CheckBox("Use E To Gapclose"));
+                    Menu.Add("InteruptUseE", new CheckBox("Use E To Interupt Enemy"));
+                    Menu.Add("CCUseE",new CheckBox("Use E On CC'ed Enemy"));
+                    Menu.Add("LasthitR", new CheckBox("Use R To Last Hit"));
                 }
 
                 public static void Initialize()

@@ -45,7 +45,7 @@ namespace JinxMaster
 
         private static void AIHeroClient_OnBuffGain(Obj_AI_Base sender, Obj_AI_BaseBuffGainEventArgs args)
         {
-            if (!Config.Modes.Misc.UseE) return;
+            if (!Config.Modes.Misc.CCUseE) return;
             var heroes = EntityManager.Heroes.Enemies;
             foreach (var h in heroes)
             {
@@ -72,8 +72,8 @@ namespace JinxMaster
 
         private static void Interrupter_OnInterruptableSpell(Obj_AI_Base sender, Interrupter.InterruptableSpellEventArgs args)
         {
-            if (!Config.Modes.Misc.UseE) return;
-            if (sender.IsEnemy && Config.Modes.Misc.UseE && SpellManager.E.IsReady() && SpellManager.E.IsInRange(sender))
+            if (!Config.Modes.Misc.IRUseE) return;
+            if (sender.IsEnemy && SpellManager.E.IsReady() && SpellManager.E.IsInRange(sender))
             {
                 //Cast E on interrupter
                 SpellManager.E.Cast(sender);
@@ -83,13 +83,13 @@ namespace JinxMaster
 
         private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs args)
         {
-            if (!Config.Modes.Misc.UseE || !Config.Modes.Misc.UseW) return;
-            if (sender.IsEnemy && Config.Modes.Misc.UseE && SpellManager.E.IsReady() && SpellManager.E.IsInRange(args.End) && sender.IsValidTarget(SpellManager.E.Range))
+            if (!Config.Modes.Misc.GCUseE || !Config.Modes.Misc.GCUseE) return;
+            if (sender.IsEnemy && Config.Modes.Misc.GCUseE && SpellManager.E.IsReady() && SpellManager.E.IsInRange(args.End) && sender.IsValidTarget(SpellManager.E.Range))
             {
                 // Cast E on the gapcloser caster
                 SpellManager.E.Cast(sender);
             }
-            if (sender.IsEnemy && Config.Modes.Misc.UseW && SpellManager.W.IsReady() && SpellManager.W.IsInRange(args.End) && sender.IsValidTarget(SpellManager.W.Range))
+            if (sender.IsEnemy && Config.Modes.Misc.GCUseW && SpellManager.W.IsReady() && SpellManager.W.IsInRange(args.End) && sender.IsValidTarget(SpellManager.W.Range))
             {
                 // Cast W on the gapcloser caster
                 SpellManager.W.Cast(sender);

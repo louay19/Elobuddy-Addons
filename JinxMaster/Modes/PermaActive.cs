@@ -18,7 +18,7 @@ namespace JinxMaster.Modes
         public override void Execute()
         {
             // TODO: Add permaactive logic here, good for spells like Ignite or Smite
-            Ultimate();
+            if(Config.Modes.Misc.LHUseR) Ultimate();
         }
 
         private void Ultimate()
