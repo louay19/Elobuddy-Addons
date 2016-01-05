@@ -11,7 +11,7 @@ namespace JinxMaster
     // complex way that I use
     public static class Config
     {
-        private const string MenuName = "JinxMasterAddon";
+        private const string MenuName = "Jinx Master Addon";
 
         private static readonly Menu Menu;
 
@@ -38,9 +38,10 @@ namespace JinxMaster
             static Modes()
             {
                 // Initialize the menu
-                Menu = Config.Menu.AddSubMenu("Modes");
-
-                // Initialize all modes
+                Menu = Config.Menu.AddSubMenu("Misc");
+                //Misc mode
+                Misc.Initialize();
+                // Initialize all orther modes
                 // Combo
                 Combo.Initialize();
                 Menu.AddSeparator();
@@ -55,8 +56,8 @@ namespace JinxMaster
 
                 //Jungleclear
                 Jungleclear.Initialize();
-                //Misc mode
-                Misc.Initialize();
+                
+                
             }
 
             public static void Initialize()
@@ -65,41 +66,38 @@ namespace JinxMaster
 
             public static class Combo
             {
-                private static readonly CheckBox _useQ;
-                private static readonly CheckBox _useW;
-                private static readonly CheckBox _useE;
-                private static readonly CheckBox _useR;
+                public static readonly Menu ComboMenu;
 
                 public static int ManaSwitchQ
                 {
-                    get { return Menu["manaSwitchQ"].Cast<Slider>().CurrentValue; }
+                    get { return ComboMenu["manaSwitchQ"].Cast<Slider>().CurrentValue; }
                 }
                 public static bool UseQ
                 {
-                    get { return _useQ.CurrentValue; }
+                    get { return ComboMenu["comboUseQ"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseW
                 {
-                    get { return _useW.CurrentValue; }
+                    get { return ComboMenu["comboUseW"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseE
                 {
-                    get { return _useE.CurrentValue; }
+                    get { return ComboMenu["comboUseE"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseR
                 {
-                    get { return _useR.CurrentValue; }
+                    get { return ComboMenu["comboUseR"].Cast<CheckBox>().CurrentValue; }
                 }
 
                 static Combo()
                 {
                     // Initialize the menu values
-                    Menu.AddGroupLabel("Combo");
-                    Menu.Add("manaSwitchQ", new Slider("Low mana to use Q ({0}%): ", 0, 0, 100));
-                    _useQ = Menu.Add("comboUseQ", new CheckBox("Use Q"));
-                    _useW = Menu.Add("comboUseW", new CheckBox("Use W"));
-                    _useE = Menu.Add("comboUseE", new CheckBox("Use E"));
-                    _useR = Menu.Add("comboUseR", new CheckBox("Use R",false)); // Default false
+                    ComboMenu = Config.Menu.AddSubMenu("Combo");
+                    ComboMenu.Add("manaSwitchQ", new Slider("Low mana to use Q ({0}%): ", 0, 0, 100));
+                    ComboMenu.Add("comboUseQ", new CheckBox("Use Q"));
+                    ComboMenu.Add("comboUseW", new CheckBox("Use W"));
+                    ComboMenu.Add("comboUseE", new CheckBox("Use E"));
+                    ComboMenu.Add("comboUseR", new CheckBox("Use R",false)); // Default false
                 }
 
                 public static void Initialize()
@@ -109,6 +107,7 @@ namespace JinxMaster
 
             public static class Harass
             {
+                public static readonly Menu HarassMenu;
                 public static bool UseQ
                 {
                     get { return Menu["harassUseQ"].Cast<CheckBox>().CurrentValue; }
@@ -134,15 +133,15 @@ namespace JinxMaster
                 {
                     // Here is another option on how to use the menu, but I prefer the
                     // way that I used in the combo class
-                    Menu.AddGroupLabel("Harass");
-                    Menu.Add("harassUseQ", new CheckBox("Use Q"));
-                    Menu.Add("harassUseW", new CheckBox("Use W"));
-                    Menu.Add("harassUseE", new CheckBox("Use E"));
-                    Menu.Add("harassUseR", new CheckBox("Use R", false)); // Default false
+                    HarassMenu = Config.Menu.AddSubMenu("Harass");
+                    HarassMenu.Add("harassUseQ", new CheckBox("Use Q"));
+                    HarassMenu.Add("harassUseW", new CheckBox("Use W"));
+                    HarassMenu.Add("harassUseE", new CheckBox("Use E"));
+                    HarassMenu.Add("harassUseR", new CheckBox("Use R", false)); // Default false
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
                     // in the display name will replace it with 0=current 1=min and 2=max value
-                    Menu.Add("harassMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
+                    HarassMenu.Add("harassMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
                 }
 
                 public static void Initialize()
@@ -152,25 +151,25 @@ namespace JinxMaster
 
             public static class Laneclear
             {
-                private static readonly CheckBox _useQ;
+                public static readonly Menu LaneclearMenu;
 
                 public static int Mana
                 {
-                    get { return Menu["LaneclearMana"].Cast<Slider>().CurrentValue; }
+                    get { return LaneclearMenu["LaneclearMana"].Cast<Slider>().CurrentValue; }
                 }
 
                 public static bool UseQ
                 {
-                    get { return _useQ.CurrentValue; }
+                    get { return LaneclearMenu["LaneclearUseQ"].Cast<CheckBox>().CurrentValue; }
                 }
 
 
                 static Laneclear()
                 {
                     // Initialize the menu values
-                    Menu.AddGroupLabel("Laneclear");
-                    _useQ = Menu.Add("LaneclearUseQ", new CheckBox("Use Q"));                    
-                    Menu.Add("LaneclearMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
+                    LaneclearMenu = Config.Menu.AddSubMenu("Laneclear");
+                    LaneclearMenu.Add("LaneclearUseQ", new CheckBox("Use Q"));
+                    LaneclearMenu.Add("LaneclearMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
                 }
 
                 public static void Initialize()
@@ -180,24 +179,24 @@ namespace JinxMaster
 
             public static class Jungleclear
             {
-                private static readonly CheckBox _useQ;
+                public static readonly Menu JungleclearMenu;
 
                 public static int Mana
                 {
-                    get { return Menu["JungleclearMana"].Cast<Slider>().CurrentValue; }
+                    get { return JungleclearMenu["JungleclearMana"].Cast<Slider>().CurrentValue; }
                 }
                 public static bool UseQ
                 {
-                    get { return _useQ.CurrentValue; }
+                    get { return JungleclearMenu["JungleclearUseQ"].Cast<CheckBox>().CurrentValue; }
                 }
 
 
                 static Jungleclear()
                 {
                     // Initialize the menu values
-                    Menu.AddGroupLabel("Jungleclear");
-                    _useQ = Menu.Add("JungleclearUseQ", new CheckBox("Use Q"));
-                    Menu.Add("JungleclearMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
+                    JungleclearMenu = Config.Menu.AddSubMenu("Jungleclear");
+                    JungleclearMenu.Add("JungleclearUseQ", new CheckBox("Use Q"));
+                    JungleclearMenu.Add("JungleclearMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
 
                 }
 

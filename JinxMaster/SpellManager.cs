@@ -24,7 +24,7 @@ namespace JinxMaster
         {
             // Let the static initializer do the job, this way we avoid multiple init calls aswell
             Q = new Spell.Active(SpellSlot.Q, 700);
-            W = new Spell.Skillshot(SpellSlot.W, 1500, EloBuddy.SDK.Enumerations.SkillShotType.Linear, 750, 3200, 80);
+            W = new Spell.Skillshot(SpellSlot.W, 1500, EloBuddy.SDK.Enumerations.SkillShotType.Linear, 600, 3200, 80);
             E = new Spell.Skillshot(SpellSlot.E, 900, EloBuddy.SDK.Enumerations.SkillShotType.Circular, 750, 1700, 50);
             R = new Spell.Skillshot(SpellSlot.R, 10000, EloBuddy.SDK.Enumerations.SkillShotType.Linear, 750, 1700, 80)
             {

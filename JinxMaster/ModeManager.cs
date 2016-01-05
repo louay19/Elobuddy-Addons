@@ -59,6 +59,10 @@ namespace JinxMaster
                         || args.Buff.IsRoot
                         || args.Buff.IsStunOrSuppressed
                         || args.Buff.IsSuppression
+                        || args.Buff.IsSlow
+                        || args.Buff.IsFear
+                        || args.Buff.IsPositive
+                        || args.Buff.IsPermanent
                       )
                         SpellManager.E.Cast(sender);
                 }
@@ -80,12 +84,12 @@ namespace JinxMaster
         private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs args)
         {
             if (!Config.Modes.Misc.UseE || !Config.Modes.Misc.UseW) return;
-            if (sender.IsEnemy && Config.Modes.Misc.UseE && SpellManager.E.IsReady() && SpellManager.E.IsInRange(args.End))
+            if (sender.IsEnemy && Config.Modes.Misc.UseE && SpellManager.E.IsReady() && SpellManager.E.IsInRange(args.End) && sender.IsValidTarget(SpellManager.E.Range))
             {
                 // Cast E on the gapcloser caster
                 SpellManager.E.Cast(sender);
             }
-            if (sender.IsEnemy && Config.Modes.Misc.UseW && SpellManager.W.IsReady() && SpellManager.W.IsInRange(args.End))
+            if (sender.IsEnemy && Config.Modes.Misc.UseW && SpellManager.W.IsReady() && SpellManager.W.IsInRange(args.End) && sender.IsValidTarget(SpellManager.W.Range))
             {
                 // Cast W on the gapcloser caster
                 SpellManager.W.Cast(sender);
