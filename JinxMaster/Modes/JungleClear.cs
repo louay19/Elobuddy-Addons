@@ -17,14 +17,13 @@ namespace JinxMaster.Modes
 
         public override void Execute()
         {
-            var target = EntityManager.MinionsAndMonsters.GetJungleMonsters().Where(j => 
-            j.Health < 1.1f*Player.Instance.GetAutoAttackDamage(j) 
-            && Player.Instance.IsInRange(j,Q.Range+150)).First();
+            var target = EntityManager.MinionsAndMonsters.GetJungleMonsters()
+                .Where(j => j.Health < 1.1f*Player.Instance.GetAutoAttackDamage(j) 
+                            && Player.Instance.Distance(j) < Q.Range).First();
 
-            if (Settings.UseQ && Q.IsReady() && target.IsValidTarget(Q.Range + 150))
+            if (target != null && Settings.UseQ && Q.IsReady())
             {
-                if (ObjectManager.Player.Distance(target) > 525f
-                    && !Extensions.FishBoneActive
+                if (!Extensions.FishBoneActive
                     && Player.Instance.ManaPercent > Settings.Mana
                    )
                 {

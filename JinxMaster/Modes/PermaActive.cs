@@ -41,9 +41,7 @@ namespace JinxMaster.Modes
 
         private void OffFishBone()
         {
-            var minions = EntityManager.MinionsAndMonsters.GetJungleMonsters(Player.Instance.Position, Q.Range);
-            var heroes = EntityManager.Heroes.Enemies.Where(o => Player.Instance.IsInRange(o, Q.Range));
-            if (Extensions.FishBoneActive && minions == null && heroes == null )
+            if (Extensions.FishBoneActive && !Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo))
             {
                 Q.Cast();
             }

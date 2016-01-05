@@ -21,7 +21,7 @@ namespace JinxMaster.Modes
             // the menu in the Config class!
             var target = TargetSelector.GetTarget(1500f, DamageType.Physical);
 
-            if (Settings.UseQ && Q.IsReady() && target.IsValidTarget(Q.Range + 150))
+            if (Settings.UseQ && Q.IsReady() && Player.Instance.Distance(target) < Q.Range + 150 && target.IsValid)
             {        
                 if (ObjectManager.Player.Distance(target) <= 525f
                     && Extensions.FishBoneActive

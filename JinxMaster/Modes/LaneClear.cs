@@ -17,27 +17,30 @@ namespace JinxMaster.Modes
 
         public override void Execute()
         {
-            var target = EntityManager.MinionsAndMonsters.GetLaneMinions().Where(o => o.Health < 1.1f*Player.Instance.GetAutoAttackDamage(o)
-            && Player.Instance.IsInRange(o,Q.Range+150)).First();
-                if (Settings.UseQ && Q.IsReady() && target.IsValidTarget(Q.Range + 150))
+            var target = EntityManager.MinionsAndMonsters.GetLaneMinions()
+                .Where(o => o.Health < 1.1f*Player.Instance.GetAutoAttackDamage(o)
+                            && Player.Instance.Distance(o) < Q.Range).First();
+
+            if (target != null && Settings.UseQ && Q.IsReady() && target.IsValid)
+            {
+                Orbwalker.ForcedTarget = target;
+                if (!Extensions.FishBoneActive
+                    && CheckFarmQ(target) 
+                    && Player.Instance.ManaPercent > Settings.Mana
+                   )
                 {
-                    Orbwalker.ForcedTarget = target;
-                    if (ObjectManager.Player.Distance(target) > 525f
-                        && !Extensions.FishBoneActive
-                        && CheckFarmQ(target) 
-                        && Player.Instance.ManaPercent > Settings.Mana
-                        )
-                    {
-                        Q.Cast();
-                    }
+                    Q.Cast();
                 }
+            }
                 // TODO: Add laneclear logic here
             }
         
 
         private bool CheckFarmQ(Obj_AI_Base target)
         {
-            return target.CountAlliesInRange(150) > 2;         
+            var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, target.Position, 185)
+                .Where(l => l.Health < Player.Instance.GetAutoAttackDamage(l) * 1.1f);
+            return minions.Count() > 1;         
         }
     }
 }
