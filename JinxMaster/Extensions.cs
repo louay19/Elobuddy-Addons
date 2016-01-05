@@ -11,7 +11,7 @@ namespace JinxMaster
         {
             get
             {              
-                return Player.Instance.AttackRange > 525f;
+                return Player.Instance.AttackRange > 525;
             }
         }
 

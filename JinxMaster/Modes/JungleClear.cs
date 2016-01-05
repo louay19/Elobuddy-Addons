@@ -17,21 +17,19 @@ namespace JinxMaster.Modes
 
         public override void Execute()
         {
-            var target = EntityManager.MinionsAndMonsters.GetJungleMonsters()
+            var targetjungle = EntityManager.MinionsAndMonsters.GetJungleMonsters()
                 .Where(j => j.Health < 1.1f*Player.Instance.GetAutoAttackDamage(j) 
                             && Player.Instance.Distance(j) < Q.Range).First();
 
-            if (Q.IsReady() && Extensions.FishBoneActive)
+            if (Q.IsReady() && Player.Instance.AttackRange > 525f)
                 {
                     Q.Cast();
-                    Chat.Print("Q Name: " + Q.Name + "\n"
-                               + "Q State: " + Q.State + "\n");
                 }
 
 
-            if (target != null && Settings.UseQ && Q.IsReady())
+            if (targetjungle != null && Settings.UseQ && Q.IsReady() && targetjungle.IsValid)
             {
-                if (!Extensions.FishBoneActive
+                if (Player.Instance.AttackRange <= 525f
                     && Player.Instance.ManaPercent > Settings.Mana
                    )
                 {

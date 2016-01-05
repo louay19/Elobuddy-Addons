@@ -17,23 +17,21 @@ namespace JinxMaster.Modes
 
         public override void Execute()
         {
-            var target = EntityManager.MinionsAndMonsters.GetLaneMinions()
+            var targetlane = EntityManager.MinionsAndMonsters.GetLaneMinions()
                 .Where(o => o.Health < 1.1f*Player.Instance.GetAutoAttackDamage(o)
                             && Player.Instance.Distance(o) < Q.Range).First();
 
-            Chat.Print("Range is: " + Player.Instance.AttackRange);
-
-            if (Q.IsReady() && Extensions.FishBoneActive)
+            if (Q.IsReady() && Player.Instance.AttackRange > 525f)
             {
                 Q.Cast();
             }
 
 
-            if (target != null && Settings.UseQ && Q.IsReady() && target.IsValid)
+            if (targetlane != null && Settings.UseQ && Q.IsReady() && targetlane.IsValid)
             {
-                Orbwalker.ForcedTarget = target;
-                if (!Extensions.FishBoneActive
-                    && CheckFarmQ(target)
+                Orbwalker.ForcedTarget = targetlane;
+                if (Player.Instance.AttackRange <= 525f
+                    && CheckFarmQ(targetlane)
                     && Player.Instance.ManaPercent > Settings.Mana
                    )
                 {
