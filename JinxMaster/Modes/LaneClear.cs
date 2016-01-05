@@ -16,20 +16,12 @@ namespace JinxMaster.Modes
         }
 
         public override void Execute()
-        {
-            var targetlane = EntityManager.MinionsAndMonsters.GetLaneMinions()
-                .Where(o => o.Health < 1.1f*Player.Instance.GetAutoAttackDamage(o)
+        {          
+            if (Settings.UseQ && Q.IsReady())
+            {
+                var targetlane = EntityManager.MinionsAndMonsters.GetLaneMinions()
+                .Where(o => o.Health < 1.1f * Player.Instance.GetAutoAttackDamage(o)
                             && Player.Instance.Distance(o) < Q.Range).First();
-
-            if (Q.IsReady() && Player.Instance.AttackRange > 525f)
-            {
-                Q.Cast();
-            }
-
-
-            if (targetlane != null && Settings.UseQ && Q.IsReady() && targetlane.IsValid)
-            {
-                Orbwalker.ForcedTarget = targetlane;
                 if (Player.Instance.AttackRange <= 525f
                     && CheckFarmQ(targetlane)
                     && Player.Instance.ManaPercent > Settings.Mana

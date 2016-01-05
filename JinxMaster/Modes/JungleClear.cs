@@ -21,12 +21,6 @@ namespace JinxMaster.Modes
                 .Where(j => j.Health < 1.1f*Player.Instance.GetAutoAttackDamage(j) 
                             && Player.Instance.Distance(j) < Q.Range).First();
 
-            if (Q.IsReady() && Player.Instance.AttackRange > 525f)
-                {
-                    Q.Cast();
-                }
-
-
             if (targetjungle != null && Settings.UseQ && Q.IsReady() && targetjungle.IsValid)
             {
                 if (Player.Instance.AttackRange <= 525f

@@ -103,6 +103,13 @@ namespace JinxMaster
                     // Precheck if the mode should be executed
                     if (mode.ShouldBeExecuted())
                     {
+                        if (!Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo))
+                        {
+                            if (SpellManager.Q.IsReady() && Player.Instance.AttackRange > 525f)
+                            {
+                                SpellManager.Q.Cast();
+                            }
+                        }
                         // Execute the mode
                         mode.Execute();
                     }
