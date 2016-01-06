@@ -1,5 +1,6 @@
 ﻿using System;
 using EloBuddy;
+using EloBuddy.SDK;
 using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
@@ -33,21 +34,14 @@ namespace Velkoz
             Config.Initialize();
             SpellManager.Initialize();
             ModeManager.Initialize();
-
+            Hacks.RenderWatermark = false;
             // Listen to events we need
-            GameObject.OnCreate += Get_Velkoz_Q_Missile;
             Drawing.OnDraw += OnDraw;
         }
 
-        private static void Get_Velkoz_Q_Missile(GameObject o, System.EventArgs args)
-        {
-            if(o.Name.Contains("Velkoz_Base_Q_EndIndicator.troy"))
-            {
-                Velkoz_Q_Missile = o;
-            }
-        }
         private static void OnDraw(EventArgs args)
         {
+            Circle.Draw(Color.Red, 200, ModeManager.cp.To3DWorld());
             // Draw range circles of our spells
            // Circle.Draw(Color.Red, SpellManager.Q.Range, Player.Instance.Position);
             // TODO: Uncomment if you want those enabled aswell, but remember to enable them

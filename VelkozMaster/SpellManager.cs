@@ -22,22 +22,22 @@ namespace Velkoz
 
 
             // TODO: Uncomment the other spells to initialize them
-            Q = new Spell.Skillshot(SpellSlot.Q, 1050, EloBuddy.SDK.Enumerations.SkillShotType.Linear,250,1200,50);
+            Q = new Spell.Skillshot(SpellSlot.Q, 1050, EloBuddy.SDK.Enumerations.SkillShotType.Linear, 250, 1500, 50);
             QSplit = new Spell.Skillshot(SpellSlot.Q, 1000, EloBuddy.SDK.Enumerations.SkillShotType.Linear, 250, 2100, 55);
-            QDummy = new Spell.Skillshot(SpellSlot.Q,(uint)Math.Sqrt(Math.Pow(Q.Range, 2) + Math.Pow(QSplit.Range, 2)),EloBuddy.SDK.Enumerations.SkillShotType.Cone,250,int.MaxValue,55);
+            QDummy = new Spell.Skillshot(SpellSlot.Q, (uint)Math.Sqrt(Math.Pow(Q.Range, 2) + Math.Pow(QSplit.Range, 2)), EloBuddy.SDK.Enumerations.SkillShotType.Cone, 250, int.MaxValue, 55);
 
-            W = new Spell.Skillshot(SpellSlot.W,1050,EloBuddy.SDK.Enumerations.SkillShotType.Linear,250,int.MaxValue,85);
+            W = new Spell.Skillshot(SpellSlot.W, 1050, EloBuddy.SDK.Enumerations.SkillShotType.Linear, 350, int.MaxValue, 85);
             W.AllowedCollisionCount = int.MaxValue;
-            E = new Spell.Skillshot(SpellSlot.E,800,EloBuddy.SDK.Enumerations.SkillShotType.Circular,500,int.MaxValue,100);
-            R = new Spell.Skillshot(SpellSlot.R,1550,EloBuddy.SDK.Enumerations.SkillShotType.Linear,300,int.MaxValue,100);
-            R.AllowedCollisionCount = int.MaxValue;
-
-
+            E = new Spell.Skillshot(SpellSlot.E, 800, EloBuddy.SDK.Enumerations.SkillShotType.Circular, 600, int.MaxValue, 155);
+            R = new Spell.Skillshot(SpellSlot.R, 1550, EloBuddy.SDK.Enumerations.SkillShotType.Linear, 250, int.MaxValue, 200)
+            {
+                AllowedCollisionCount = int.MaxValue
+            };
         }
 
         public static void Initialize()
         {
             // Let the static initializer do the job, this way we avoid multiple init calls aswell
         }
-    }
+    }        
 }

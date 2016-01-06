@@ -11,12 +11,12 @@ namespace JinxMaster
         {
             get
             {              
-                return Player.Instance.AttackRange > 525;
+                return Player.Instance.Spellbook.GetSpell(SpellSlot.Q).ToggleState == 2;
             }
         }
 
         public static float GetDamageToTarget(SpellSlot spell, Obj_AI_Base tar)
-        {
+        {      
             float damage = 0;
             switch (spell)
             {

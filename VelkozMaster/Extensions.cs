@@ -7,18 +7,19 @@ namespace Velkoz
 {
     public static class Extensions
     {
-        public static bool GetCollision(this Spell.SpellBase spell,SharpDX.Vector2 from,SharpDX.Vector2 to,System.Collections.Generic.IEnumerable<EloBuddy.Obj_AI_Minion> minions,float missileSpeed,int missileWidth,int missileDelay)
-        {
-            foreach(var minion in minions)
-            {
-                if (Prediction.Position.Collision.LinearMissileCollision(minion, from, to, missileSpeed, missileWidth, missileDelay))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public static bool HasUndyingBuff(this AIHeroClient target)
+        public static bool GetCollision(this Spell.SpellBase spell, SharpDX.Vector2 from, SharpDX.Vector2 to, System.Collections.Generic.IEnumerable<EloBuddy.Obj_AI_Minion> minions, float missileSpeed, int missileWidth, int missileDelay)
+         { 
+             foreach(var minion in minions) 
+             { 
+                 if (Prediction.Position.Collision.LinearMissileCollision(minion, from, to, missileSpeed, missileWidth, missileDelay)) 
+                 { 
+                     return true; 
+                 } 
+             } 
+             return false; 
+         }
+
+public static bool HasUndyingBuff(this AIHeroClient target)
         {
             // Various buffs
             if (target.Buffs.Any(

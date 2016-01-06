@@ -4,12 +4,15 @@ using Velkoz.Modes;
 using EloBuddy;
 using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Utils;
+using EloBuddy.SDK;
 
 namespace Velkoz
 {
     public static class ModeManager
     {
         private static List<ModeBase> Modes { get; set; }
+        public static SharpDX.Vector2 cp;
+        public static bool cpbool;
 
         static ModeManager()
         {
@@ -51,6 +54,7 @@ namespace Velkoz
                         // Execute the mode
                         mode.Execute();
                     }
+                                    
                 }
                 catch (Exception e)
                 {
