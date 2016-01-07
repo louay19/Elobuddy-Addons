@@ -109,7 +109,7 @@ namespace JinxMaster
                     {
                         if (!Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo))
                         {
-                            if (SpellManager.Q.IsReady() && Player.Instance.AttackRange > 525f)
+                            if (SpellManager.Q.IsReady() && Extensions.FishBoneActive)
                             {
                                 SpellManager.Q.Cast();
                             }

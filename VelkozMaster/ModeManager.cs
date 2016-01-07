@@ -4,7 +4,6 @@ using Velkoz.Modes;
 using EloBuddy;
 using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Utils;
-using EloBuddy.SDK;
 
 namespace Velkoz
 {
