@@ -19,10 +19,9 @@ namespace Velkoz.Modes
             {
                 return;
             }
-            if (Settings.UseQ && Q.IsReady())
+            if (Settings.UseQ && Q.IsReady() && Q.Name == "VelkozQ")
             {
-                if (Q.Cast(EntityManager.MinionsAndMonsters.GetLineFarmLocation(minions, Q.Width, (int)Q.Range).CastPosition))
-                    return;
+                Q.Cast(EntityManager.MinionsAndMonsters.GetLineFarmLocation(minions, Q.Width, (int)Q.Range).CastPosition);
             }
 
             if (Settings.UseW && W.IsReady())

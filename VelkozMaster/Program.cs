@@ -12,7 +12,6 @@ namespace Velkoz
         // Change this line to the champion you want to make the addon for,
         // watch out for the case being correct!
         public const string ChampName = "Velkoz";
-        public static GameObject Velkoz_Q_Missile;
 
         public static void Main(string[] args)
         {
@@ -42,6 +41,7 @@ namespace Velkoz
         private static void OnDraw(EventArgs args)
         {
             Circle.Draw(Color.Red, 200, ModeManager.cp.To3DWorld());
+            Circle.Draw(Color.Green, 200, ModeManager.missile.StartPosition);
             // Draw range circles of our spells
            // Circle.Draw(Color.Red, SpellManager.Q.Range, Player.Instance.Position);
             // TODO: Uncomment if you want those enabled aswell, but remember to enable them

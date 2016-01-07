@@ -23,7 +23,7 @@ namespace Velkoz.Modes
             {
                 return;
             }
-            if (Settings.UseQ && Q.IsReady())
+            if (Settings.UseQ && Q.IsReady() && Q.Name == "SpellVelkozQ")
             {
                 if (Q.Cast(EntityManager.MinionsAndMonsters.GetLineFarmLocation(minions, Q.Width, (int)Q.Range).CastPosition))
                     return;

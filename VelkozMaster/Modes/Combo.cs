@@ -15,11 +15,6 @@ namespace Velkoz.Modes
             return Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo);
         }
 
-        private void ReactiveQ()
-        {
-            Q.Cast(Player);
-        }
-
         public override void Execute()
         {
             // TODO: Add combo logic here
@@ -30,44 +25,38 @@ namespace Velkoz.Modes
             if (target != null && target.IsValidTarget(1575))
             {
                 //Q Normal
-                if (Settings.UseQ && Q.IsReady() &&Q.Name != "velkozqsplitactivate" && target.IsValidTarget(Q.Range))
+                if (Settings.UseQ && Q.IsReady() && Q.Name != "velkozqsplitactivate" && target.IsValidTarget(Q.Range))
                 {
                     var Pred = Q.GetPrediction(target);
-                    if(Pred.HitChancePercent > 60)
+                    if(Pred.HitChancePercent > 70)
                     {
                         Q.Cast(Pred.CastPosition);
-
-                    }                    
-                }
-
-                //Q Smart
-                if (Settings.UseSmartQ && Q.IsReady())
-                {
-                    var Pred = QDummy.GetPrediction(target);
-                    if (Pred.HitChancePercent > 70)
+                    }
+                    else //Q Smart
+                    if(Settings.UseSmartQ && Q.IsReady() && Q.Name != "velkozqsplitactivate")
                     {
-                        for (var i = -1; i < 1; i = i + 2)
+                        var PredQDummy = QDummy.GetPrediction(target);
+                        if (PredQDummy.HitChancePercent > 70)
                         {
-                            var alpha = 28 * (float)Math.PI / 180;
-                            ModeManager.cp = ObjectManager.Player.ServerPosition.To2D() +
-                                     (Pred.CastPosition.To2D() - ObjectManager.Player.ServerPosition.To2D()).Rotated
-                                     (i * alpha);
-                            
-                            var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Player.ServerPosition, Q.Range*1.5f);
-
-                            if (!Q.GetCollision(Player.Position.To2D(),ModeManager.cp,minions,5000,80,0) 
-                                && !Q.GetCollision(ModeManager.cp, Pred.CastPosition.To2D(), minions, 5000, 80, 0)) //Need to fixed here
+                            for (var i = -1; i < 1; i = i + 2)
                             {
-                                if (Q.Name == "velkozqsplitactivate")
+                                var alpha = 30 * (float)Math.PI / 180;
+                                ModeManager.cp = ObjectManager.Player.ServerPosition.To2D() +
+                                         (PredQDummy.CastPosition.To2D() - ObjectManager.Player.ServerPosition.To2D()).Rotated
+                                         (i * alpha);
+
+                                var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Player.ServerPosition, Q.Range * 1.5f);
+
+                                if (!Q.GetCollision(Player.Position.To2D(), ModeManager.cp, minions, 5000, 80, 0)
+                                    && !Q.GetCollision(ModeManager.cp, PredQDummy.CastPosition.To2D(), minions, 5000, 80, 0)) //Need to fixed here
                                 {
-                                    int delaytime = 1000 * (int)Player.Distance(ModeManager.cp.To3DWorld()) / 1200;
-                                    Core.DelayAction(ReactiveQ, delaytime);
+                                    Q.Cast(ModeManager.cp.To3DWorld());
                                 }
-                                else Q.Cast(ModeManager.cp.To3DWorld());
                             }
                         }
                     }
                 }
+
                 //W Skill
 
                 if (Settings.UseW && W.IsReady() && target.IsValidTarget(W.Range))
