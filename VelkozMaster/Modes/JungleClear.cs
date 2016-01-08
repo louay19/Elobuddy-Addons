@@ -17,13 +17,14 @@ namespace Velkoz.Modes
 
         public override void Execute()
         {
+            if (Settings.Mana > Player.ManaPercent) return;
             // TODO: Add jungleclear logic here
             var minions = EntityManager.MinionsAndMonsters.GetJungleMonsters(Player.ServerPosition,R.Range, true).ToArray();
             if (minions.Length == 0)
             {
                 return;
             }
-            if (Settings.UseQ && Q.IsReady() && Q.Name == "SpellVelkozQ")
+            if (Settings.UseQ && Q.IsReady() && Q.Name == "VelkozQ")
             {
                 if (Q.Cast(EntityManager.MinionsAndMonsters.GetLineFarmLocation(minions, Q.Width, (int)Q.Range).CastPosition))
                     return;

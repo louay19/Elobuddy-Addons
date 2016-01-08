@@ -16,6 +16,7 @@ namespace Velkoz.Modes
 
         public override void Execute()
         {
+            if (Settings.Mana > Player.ManaPercent) return;
             // TODO: Add harass logic here
             // See how I used the Settings.UseQ and Settings.Mana here, this is why I love
             // my way of using the menu in the Config class!

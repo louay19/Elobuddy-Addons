@@ -14,6 +14,7 @@ namespace Velkoz.Modes
 
         public override void Execute()
         {
+            if (Settings.Mana > Player.ManaPercent) return;
             var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Player.ServerPosition, W.Range, false).ToArray();
             if (minions.Length == 0)
             {
@@ -21,7 +22,8 @@ namespace Velkoz.Modes
             }
             if (Settings.UseQ && Q.IsReady() && Q.Name == "VelkozQ")
             {
-                Q.Cast(EntityManager.MinionsAndMonsters.GetLineFarmLocation(minions, Q.Width, (int)Q.Range).CastPosition);
+                if(Q.Cast(EntityManager.MinionsAndMonsters.GetLineFarmLocation(minions, Q.Width, (int)Q.Range).CastPosition))
+                    return;
             }
 
             if (Settings.UseW && W.IsReady())

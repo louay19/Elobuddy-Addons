@@ -33,7 +33,7 @@ namespace Velkoz
             {
                 AllowedCollisionCount = int.MaxValue
             };
-            E = new Spell.Skillshot(SpellSlot.E, 800, EloBuddy.SDK.Enumerations.SkillShotType.Circular, 600, int.MaxValue, 155);
+            E = new Spell.Skillshot(SpellSlot.E, 850, EloBuddy.SDK.Enumerations.SkillShotType.Circular, 500, int.MaxValue, 155);
             R = new Spell.Skillshot(SpellSlot.R, 1550, EloBuddy.SDK.Enumerations.SkillShotType.Linear, 250, int.MaxValue, 200)
             {
                 AllowedCollisionCount = int.MaxValue

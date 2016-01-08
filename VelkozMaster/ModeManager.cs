@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Velkoz.Modes;
 using EloBuddy;
+using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Utils;
 using EloBuddy.SDK;
@@ -37,6 +38,26 @@ namespace Velkoz
             Game.OnTick += OnTick;
             GameObject.OnCreate += GameObject_OnCreate;
             Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
+            Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
+            Interrupter.OnInterruptableSpell += Interrupter_OnInterruptableSpell;
+            
+        }
+
+        private static void Interrupter_OnInterruptableSpell(Obj_AI_Base sender, Interrupter.InterruptableSpellEventArgs e)
+        {
+            if (sender.IsEnemy && sender.IsValidTarget(SpellManager.E.Range))
+                SpellManager.E.Cast(sender);
+            throw new NotImplementedException();
+        }
+
+        private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
+        {
+            if(sender.IsEnemy && sender.IsValidTarget(SpellManager.E.Range))
+            {
+                SpellManager.E.Cast(e.End);
+                SpellManager.Q.Cast(e.End);
+            }
+            throw new NotImplementedException();
         }
 
         private static void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
