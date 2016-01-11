@@ -24,7 +24,7 @@ namespace Velkoz
             // TODO: Uncomment the other spells to initialize them
             Q = new Spell.Skillshot(SpellSlot.Q, 1050, EloBuddy.SDK.Enumerations.SkillShotType.Linear, 250, 1200, 50);
             QSplit = new Spell.Skillshot(SpellSlot.Q, 1000, EloBuddy.SDK.Enumerations.SkillShotType.Linear, 250, 2100, 55);
-            QDummy = new Spell.Skillshot(SpellSlot.Q, (uint)Math.Sqrt(Math.Pow(Q.Range, 2) + Math.Pow(QSplit.Range, 2)), EloBuddy.SDK.Enumerations.SkillShotType.Linear, 250, int.MaxValue, 55)
+            QDummy = new Spell.Skillshot(SpellSlot.Q, (uint)Math.Sqrt(Math.Pow(Q.Range, 2) + Math.Pow(QSplit.Range, 2)), EloBuddy.SDK.Enumerations.SkillShotType.Linear, 750 , int.MaxValue, 55)
             {
                 AllowedCollisionCount = int.MaxValue
             };

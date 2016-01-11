@@ -1,5 +1,6 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
+using SharpDX;
 using System;
 
 // Using the config like this makes your life easier, trust me
@@ -25,12 +26,15 @@ namespace Velkoz.Modes
             if (target != null && target.IsValidTarget(1575))
             {
                 //Q Normal
-                if (Settings.UseQ && Q.IsReady() && Q.Name != "velkozqsplitactivate" && target.IsValidTarget(Q.Range))
+                if (Settings.UseQ && Q.IsReady() && Q.Name != "velkozqsplitactivate" 
+                    && target.IsValidTarget(Q.Range) && !ModeManager.cpbool)
                 {
                     var Pred = Q.GetPrediction(target);
                     if(Pred.HitChancePercent > 70)
                     {
                         Q.Cast(Pred.CastPosition);
+                        ModeManager.cpbool = false;
+                        ModeManager.cp = Vector2.Zero;
                     }
                     else //Q Smart
                     if(Settings.UseSmartQ && Q.IsReady() && Q.Name != "velkozqsplitactivate")
@@ -51,6 +55,7 @@ namespace Velkoz.Modes
                                     && !Q.GetCollision(ModeManager.cp, PredQDummy.CastPosition.To2D(), minions, 5000, 80, 0)) //Need to fixed here
                                 {
                                     Q.Cast(ModeManager.cp.To3DWorld());
+                                    ModeManager.cpbool = true;
                                 }
                             }
                         }

@@ -13,7 +13,7 @@ namespace Velkoz
     {
         private static List<ModeBase> Modes { get; set; }
         public static SharpDX.Vector2 cp;
-        public static bool cpbool;
+        public static bool cpbool = true;
         public static MissileClient missile;
 
         static ModeManager()

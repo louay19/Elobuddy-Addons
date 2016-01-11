@@ -33,7 +33,6 @@ namespace Velkoz
             Config.Initialize();
             SpellManager.Initialize();
             ModeManager.Initialize();
-            Hacks.RenderWatermark = false;
             // Listen to events we need
             Drawing.OnDraw += OnDraw;
         }
