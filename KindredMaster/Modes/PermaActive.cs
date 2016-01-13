@@ -1,4 +1,7 @@
-﻿namespace Kindred.Modes
+﻿using EloBuddy.SDK;
+using System.Linq;
+
+namespace Kindred.Modes
 {
     public sealed class PermaActive : ModeBase
     {
@@ -9,10 +12,17 @@
 
         public override void Execute()
         {
-            if ((Player.Health/Player.MaxHealth) < 0.3f)
+            if (!R.IsReady()) return;
+            if (Player.HealthPercent < Config.Misc.LowHP)
             {
-                R.Cast(Player.Position);
-                R.Cast();
+                if (R.Cast(Player)) return;
+            }
+
+            var allylowHP = EntityManager.Heroes.Allies.Where(o => o.HealthPercent < Config.Misc.LowHP
+                                                             && o.Distance(Player) < R.Range).First();
+            if (allylowHP != null)
+            {
+                if (R.Cast(allylowHP)) return;
             }
         }
     }

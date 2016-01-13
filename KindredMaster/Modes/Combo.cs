@@ -92,15 +92,6 @@ namespace Kindred.Modes
                                     }
                                 }
                                 break;
-                            case SpellSlot.R:
-                                if (Player.Health/Player.MaxHealth <= 0.3)
-                                {
-                                    if (R.Cast(Player))
-                                    {
-                                        return;
-                                    }
-                                }
-                                break;
                         }
                     }
                 }
