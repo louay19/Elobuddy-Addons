@@ -47,6 +47,12 @@ namespace Chogath
 
                 // Harass
                 Harass.Initialize();
+
+                //Laneclear
+                LaneClear.Initialize();
+
+                //Jungle Clear
+                JungleClear.Initialize();
             }
 
             public static void Initialize()

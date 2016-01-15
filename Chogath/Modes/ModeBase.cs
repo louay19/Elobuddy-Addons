@@ -10,9 +10,9 @@ namespace Chogath.Modes
         // just change it to Spell.SpellBase, this way it's dynamic with still
         // the most needed functions
 
-        protected AIHeroClient Player
+        protected AIHeroClient _Player
         {
-            get { return ObjectManager.Player; }
+            get { return Player.Instance; }
         }
         protected Spell.Skillshot Q
         {
