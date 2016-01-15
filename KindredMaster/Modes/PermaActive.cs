@@ -1,4 +1,5 @@
-﻿using EloBuddy.SDK;
+﻿using EloBuddy;
+using EloBuddy.SDK;
 using System.Linq;
 
 namespace Kindred.Modes
@@ -13,17 +14,23 @@ namespace Kindred.Modes
         public override void Execute()
         {
             if (!R.IsReady()) return;
-            if (Player.HealthPercent < Config.Misc.LowHP)
+            if (Player.HealthPercent < Config.Misc.LowHP && CheckEnemyHeroesAround(Player) > 0)
             {
-                if (R.Cast(Player)) return;
+                if (R.Cast(Player.Position)) return;
             }
 
             var allylowHP = EntityManager.Heroes.Allies.Where(o => o.HealthPercent < Config.Misc.LowHP
                                                              && o.Distance(Player) < R.Range).First();
-            if (allylowHP != null)
+            if (allylowHP != null && CheckEnemyHeroesAround(allylowHP) > 0)
             {
-                if (R.Cast(allylowHP)) return;
+                if (R.Cast(allylowHP.Position)) return;
             }
+        }
+
+        private int CheckEnemyHeroesAround(Obj_AI_Base target)
+        {
+            var heroesenemy = EntityManager.Heroes.Enemies.Where(o => o.Distance(target) < 1500);
+            return heroesenemy.Count();
         }
     }
 }
