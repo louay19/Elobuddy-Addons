@@ -69,10 +69,6 @@ namespace Chogath
                 {
                     get { return Menu["comboUseW"].Cast<CheckBox>().CurrentValue; }
                 }
-                public static bool UseE
-                {
-                    get { return Menu["comboUseE"].Cast<CheckBox>().CurrentValue; }
-                }
                 public static bool UseR
                 {
                     get { return Menu["comboUseR"].Cast<CheckBox>().CurrentValue; }
@@ -83,8 +79,7 @@ namespace Chogath
                     Menu.AddGroupLabel("Combo");
                     Menu.Add("comboUseQ", new CheckBox("Use Q"));
                     Menu.Add("comboUseW", new CheckBox("Use W"));
-                    Menu.Add("comboUseE", new CheckBox("Use E"));
-                    Menu.Add("comboUseR", new CheckBox("Use R", false)); // Default false
+                    Menu.Add("comboUseR", new CheckBox("Use R")); // Default false
                 }
 
                 public static void Initialize()
@@ -102,10 +97,6 @@ namespace Chogath
                 {
                     get { return Menu["harassUseW"].Cast<CheckBox>().CurrentValue; }
                 }
-                public static bool UseE
-                {
-                    get { return Menu["harassUseE"].Cast<CheckBox>().CurrentValue; }
-                }
                 public static bool UseR
                 {
                     get { return Menu["harassUseR"].Cast<CheckBox>().CurrentValue; }
@@ -122,8 +113,7 @@ namespace Chogath
                     Menu.AddGroupLabel("Harass");
                     Menu.Add("harassUseQ", new CheckBox("Use Q"));
                     Menu.Add("harassUseW", new CheckBox("Use W"));
-                    Menu.Add("harassUseE", new CheckBox("Use E"));
-                    Menu.Add("harassUseR", new CheckBox("Use R", false)); // Default false
+                    Menu.Add("harassUseR", new CheckBox("Use R")); // Default false
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
                     // in the display name will replace it with 0=current 1=min and 2=max value
@@ -158,7 +148,7 @@ namespace Chogath
                 {
                     // Here is another option on how to use the menu, but I prefer the
                     // way that I used in the combo class
-                    Menu.AddGroupLabel("Harass");
+                    Menu.AddGroupLabel("Lane Clear");
                     Menu.Add("laneclearUseQ", new CheckBox("Use Q"));
                     Menu.Add("laneclearUseW", new CheckBox("Use W"));
                     Menu.Add("laneclearUseR", new CheckBox("Use R", false)); // Default false
@@ -196,7 +186,7 @@ namespace Chogath
                 {
                     // Here is another option on how to use the menu, but I prefer the
                     // way that I used in the combo class
-                    Menu.AddGroupLabel("Harass");
+                    Menu.AddGroupLabel("Jungle Clear");
                     Menu.Add("jungleclearUseQ", new CheckBox("Use Q"));
                     Menu.Add("jungleclearUseW", new CheckBox("Use W"));
                     Menu.Add("jungleclearUseR", new CheckBox("Use R", false)); // Default false

@@ -16,10 +16,10 @@ namespace Chogath
         static SpellManager()
         {
             // Initialize spells
-            Q = new Spell.Skillshot(SpellSlot.Q,950,EloBuddy.SDK.Enumerations.SkillShotType.Circular,500,int.MaxValue,175);
+            Q = new Spell.Skillshot(SpellSlot.Q,950,EloBuddy.SDK.Enumerations.SkillShotType.Circular,500,1520,90);
 
             // TODO: Uncomment the other spells to initialize them
-            W = new Spell.Skillshot(SpellSlot.W, 700, EloBuddy.SDK.Enumerations.SkillShotType.Cone, 250,int.MaxValue,100);
+            W = new Spell.Skillshot(SpellSlot.W, 700, EloBuddy.SDK.Enumerations.SkillShotType.Cone, 250,int.MaxValue,50);
             W.AllowedCollisionCount = int.MaxValue;
             E = new Spell.Active(SpellSlot.E);
             R = new Spell.Targeted(SpellSlot.R,500);

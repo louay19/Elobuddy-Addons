@@ -3,6 +3,7 @@ using EloBuddy;
 using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
+using EloBuddy.SDK;
 
 namespace Chogath
 {
@@ -35,6 +36,32 @@ namespace Chogath
 
             // Listen to events we need
             Drawing.OnDraw += OnDraw;
+            Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
+            Interrupter.OnInterruptableSpell += Interrupter_OnInterruptableSpell;
+            Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
+        }
+
+        private static void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void Interrupter_OnInterruptableSpell(Obj_AI_Base sender, Interrupter.InterruptableSpellEventArgs e)
+        {
+            if (sender.Type != GameObjectType.AIHeroClient) return;
+            if (!SpellManager.W.IsReady() && !SpellManager.Q.IsReady()) return;
+            if (SpellManager.W.IsReady() && ObjectManager.Player.Distance(sender) < SpellManager.W.Range) SpellManager.W.Cast(sender);
+            if (SpellManager.Q.IsReady() && ObjectManager.Player.Distance(sender) < SpellManager.Q.Range) SpellManager.Q.Cast(sender);
+            throw new NotImplementedException();
+        }
+
+        private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
+        {
+            if (sender.Type != GameObjectType.AIHeroClient) return;
+            if (!SpellManager.W.IsReady() && !SpellManager.Q.IsReady()) return;
+            if (SpellManager.W.IsReady() && ObjectManager.Player.Distance(e.End) < SpellManager.W.Range) SpellManager.W.Cast(e.End);
+            if (SpellManager.Q.IsReady() && ObjectManager.Player.Distance(e.End) < SpellManager.Q.Range) SpellManager.Q.Cast(e.End);
+            throw new NotImplementedException();
         }
 
         private static void OnDraw(EventArgs args)
