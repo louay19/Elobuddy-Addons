@@ -26,10 +26,10 @@ namespace Chogath.Modes
                     R.Cast(tar);
                 }
             }
-            if (_Player.ManaPercent < Settings.Mana)
+            if (_Player.ManaPercent > Settings.Mana)
             {
                 var minions = EntityManager.MinionsAndMonsters.GetJungleMonsters(_Player.Position, 1000).Where(m => m.IsValid);
-
+                if (minions.Count() < 1) return;
                 if (Q.IsReady() && Settings.UseQ)
                 {
                     Q.Cast(EntityManager.MinionsAndMonsters.GetCircularFarmLocation(minions, 175, 950, _Player.Position.To2D()).CastPosition);
