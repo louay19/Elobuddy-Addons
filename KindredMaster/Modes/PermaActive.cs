@@ -16,14 +16,14 @@ namespace Kindred.Modes
             if (!R.IsReady()) return;
             if (Player.HealthPercent < Config.Misc.LowHP && CheckEnemyHeroesAround(Player) > 0)
             {
-                if (R.Cast(Player.Position)) return;
+                if (R.Cast(Player)) return;
             }
 
             var allylowHP = EntityManager.Heroes.Allies.Where(o => o.HealthPercent < Config.Misc.LowHP
                                                              && o.Distance(Player) < R.Range).First();
             if (allylowHP != null && CheckEnemyHeroesAround(allylowHP) > 0)
             {
-                if (R.Cast(allylowHP.Position)) return;
+                if (R.Cast(allylowHP)) return;
             }
         }
 
