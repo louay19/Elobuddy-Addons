@@ -15,6 +15,7 @@ namespace Chogath.Modes
 
         public override void Execute()
         {
+            if (_Player.ManaPercent < Settings.Mana) return;
             if (!Q.IsReady() && !W.IsReady()) return;
             // TODO: Add laneclear logic here
             var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, _Player.Position, 1000);

@@ -145,10 +145,6 @@ namespace Chogath
                 {
                     get { return Menu["laneclearUseW"].Cast<CheckBox>().CurrentValue; }
                 }
-                public static bool UseE
-                {
-                    get { return Menu["laneclearUseE"].Cast<CheckBox>().CurrentValue; }
-                }
                 public static bool UseR
                 {
                     get { return Menu["laneclearUseR"].Cast<CheckBox>().CurrentValue; }
@@ -165,7 +161,6 @@ namespace Chogath
                     Menu.AddGroupLabel("Harass");
                     Menu.Add("laneclearUseQ", new CheckBox("Use Q"));
                     Menu.Add("laneclearUseW", new CheckBox("Use W"));
-                    Menu.Add("laneclearUseE", new CheckBox("Use E"));
                     Menu.Add("laneclearUseR", new CheckBox("Use R", false)); // Default false
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
@@ -188,10 +183,6 @@ namespace Chogath
                 {
                     get { return Menu["jungleclearUseW"].Cast<CheckBox>().CurrentValue; }
                 }
-                public static bool UseE
-                {
-                    get { return Menu["jungleclearUseE"].Cast<CheckBox>().CurrentValue; }
-                }
                 public static bool UseR
                 {
                     get { return Menu["jungleclearUseR"].Cast<CheckBox>().CurrentValue; }
@@ -208,7 +199,6 @@ namespace Chogath
                     Menu.AddGroupLabel("Harass");
                     Menu.Add("jungleclearUseQ", new CheckBox("Use Q"));
                     Menu.Add("jungleclearUseW", new CheckBox("Use W"));
-                    Menu.Add("jungleclearUseE", new CheckBox("Use E"));
                     Menu.Add("jungleclearUseR", new CheckBox("Use R", false)); // Default false
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}

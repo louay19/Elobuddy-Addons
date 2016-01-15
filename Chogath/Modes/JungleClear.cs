@@ -16,8 +16,8 @@ namespace Chogath.Modes
         public override void Execute()
         {
             // TODO: Add jungleclear logic here
+            if (_Player.ManaPercent < Settings.Mana) return;
             if (!Q.IsReady() && !W.IsReady()) return;
-            // TODO: Add laneclear logic here
             var minions = EntityManager.MinionsAndMonsters.GetJungleMonsters(_Player.Position, 1000);
 
 
