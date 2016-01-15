@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kindred", "KindredMaster\Ki
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Velkoz", "VelkozMaster\Velkoz.csproj", "{E8CDCF65-4C1D-4528-8A27-DC40ED9D2300}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chogath", "Chogath\Chogath.csproj", "{7B6CE403-E860-4655-803F-9A777AA35E75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChogathMaster", "Chogath\ChogathMaster.csproj", "{7B6CE403-E860-4655-803F-9A777AA35E75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
