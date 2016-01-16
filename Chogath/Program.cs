@@ -4,6 +4,7 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
 using EloBuddy.SDK;
+using System.Linq;
 
 namespace Chogath
 {
@@ -37,12 +38,21 @@ namespace Chogath
             // Listen to events we need
             Drawing.OnDraw += OnDraw;
             Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
-            Interrupter.OnInterruptableSpell += Interrupter_OnInterruptableSpell;         
+            Interrupter.OnInterruptableSpell += Interrupter_OnInterruptableSpell;
+            Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;  
+        }
+
+        private static void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            if (sender.IsMe && args.Target.Type == GameObjectType.obj_AI_Minion)
+            {
+            }
+            throw new NotImplementedException();
         }
 
         private static void Interrupter_OnInterruptableSpell(Obj_AI_Base sender, Interrupter.InterruptableSpellEventArgs e)
         {
-            if (Config.Modes.Misc.MiscQ && Config.Modes.Misc.MiscW && sender.IsEnemy && sender.IsValid)
+            if (Config.Modes.Misc.MiscQ && Config.Modes.Misc.MiscW && sender.IsEnemy && sender.IsValidTarget(950))
             {
                 if (SpellManager.W.IsReady() && ObjectManager.Player.Distance(sender) < SpellManager.W.Range)
                     SpellManager.W.Cast(sender);
@@ -55,7 +65,7 @@ namespace Chogath
 
         private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
         {
-            if (Config.Modes.Misc.MiscQ && Config.Modes.Misc.MiscW && sender.IsEnemy && sender.IsValid)
+            if (Config.Modes.Misc.MiscQ && Config.Modes.Misc.MiscW && sender.IsEnemy && sender.IsValidTarget(950))
             {
                 if (SpellManager.W.IsReady() && ObjectManager.Player.Distance(e.End) < SpellManager.W.Range)
                     SpellManager.W.Cast(e.End);

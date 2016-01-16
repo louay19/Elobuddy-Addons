@@ -24,12 +24,12 @@ namespace Chogath.Modes
             {
                
 
-                if (Settings.UseQ && _Player.Distance(target) <= Q.Range)
+                if (Settings.UseQ && Q.IsReady() &&  _Player.Distance(target) <= (Q.Range + 175))
                 {
                     var Pred = Q.GetPrediction(target);
-                    if (Pred.HitChancePercent > Config.Modes.Misc.HitChance && Q.IsReady())
+                    if (Pred.HitChancePercent > Config.Modes.Misc.HitChance )
                     {
-                        if(Q.Cast(Pred.CastPosition)) return;
+                        Q.Cast(Pred.CastPosition);
                     }
                     
                 }
@@ -40,7 +40,7 @@ namespace Chogath.Modes
                         if (W.Cast(target)) return;
                 }
 
-                if (Settings.UseR && _Player.Distance(target) <= R.Range && R.IsReady() && Extensions.GetDamageToTarget(SpellSlot.R, target) > target.Health - 20)
+                if (Settings.UseR && _Player.Distance(target) <= R.Range && R.IsReady() && Extensions.GetDamageToTarget(SpellSlot.R, target) > target.Health)
                 {
                         if (R.Cast(target)) return;
                 }
