@@ -42,21 +42,27 @@ namespace Chogath
 
         private static void Interrupter_OnInterruptableSpell(Obj_AI_Base sender, Interrupter.InterruptableSpellEventArgs e)
         {
-            if (!Config.Modes.Misc.MiscQ && !Config.Modes.Misc.MiscW && sender.Type != GameObjectType.AIHeroClient && sender.IsAlly && !sender.IsValid) return;
-            if (SpellManager.W.IsReady() && ObjectManager.Player.Distance(sender) < SpellManager.W.Range)
-                SpellManager.W.Cast(sender);
-            if (SpellManager.Q.IsReady() && ObjectManager.Player.Distance(sender) < SpellManager.Q.Range)
-                SpellManager.Q.Cast(sender);
+            if (Config.Modes.Misc.MiscQ && Config.Modes.Misc.MiscW && sender.IsEnemy && sender.IsValid)
+            {
+                if (SpellManager.W.IsReady() && ObjectManager.Player.Distance(sender) < SpellManager.W.Range)
+                    SpellManager.W.Cast(sender);
+                if (SpellManager.Q.IsReady() && ObjectManager.Player.Distance(sender) < SpellManager.Q.Range)
+                    SpellManager.Q.Cast(sender);
+            }
+            
             throw new NotImplementedException();
         }
 
         private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
         {
-            if (!Config.Modes.Misc.MiscQ && !Config.Modes.Misc.MiscW && sender.Type != GameObjectType.AIHeroClient && sender.IsAlly && !sender.IsValid) return;
-            if (SpellManager.W.IsReady() && ObjectManager.Player.Distance(e.End) < SpellManager.W.Range)
-                SpellManager.W.Cast(e.End);
-            if (SpellManager.Q.IsReady() && ObjectManager.Player.Distance(e.End) < SpellManager.Q.Range)
-                SpellManager.Q.Cast(e.End);
+            if (Config.Modes.Misc.MiscQ && Config.Modes.Misc.MiscW && sender.IsEnemy && sender.IsValid)
+            {
+                if (SpellManager.W.IsReady() && ObjectManager.Player.Distance(e.End) < SpellManager.W.Range)
+                    SpellManager.W.Cast(e.End);
+                if (SpellManager.Q.IsReady() && ObjectManager.Player.Distance(e.End) < SpellManager.Q.Range)
+                    SpellManager.Q.Cast(e.End);
+            }
+            
             throw new NotImplementedException();
         }
 
