@@ -25,6 +25,7 @@ namespace Chogath
 
             // Initialize the modes
             Modes.Initialize();
+
         }
 
         public static void Initialize()
@@ -33,17 +34,10 @@ namespace Chogath
 
         public static class Modes
         {
-            private static readonly Menu Menu;
-
             static Modes()
             {
-                // Initialize the menu
-                Menu = Config.Menu.AddSubMenu("Modes");
-
-                // Initialize all modes
                 // Combo
                 Combo.Initialize();
-                Menu.AddSeparator();
 
                 // Harass
                 Harass.Initialize();
@@ -53,6 +47,9 @@ namespace Chogath
 
                 //Jungle Clear
                 JungleClear.Initialize();
+
+                //Misc Config
+                Misc.Initialize();
             }
 
             public static void Initialize()
@@ -77,7 +74,7 @@ namespace Chogath
                 static Combo()
                 {
                     // Initialize the menu values
-                    ComboMenu = Menu.AddSubMenu("Combo");
+                    ComboMenu = Config.Menu.AddSubMenu("Combo");
                     ComboMenu.Add("comboUseQ", new CheckBox("Use Q"));
                     ComboMenu.Add("comboUseW", new CheckBox("Use W",false));
                     ComboMenu.Add("comboUseR", new CheckBox("Use R"));
@@ -112,7 +109,7 @@ namespace Chogath
                 {
                     // Here is another option on how to use the menu, but I prefer the
                     // way that I used in the combo class
-                    HarassMenu = Menu.AddSubMenu("Harass");
+                    HarassMenu = Config.Menu.AddSubMenu("Harass");
                     HarassMenu.Add("harassUseQ", new CheckBox("Use Q"));
                     HarassMenu.Add("harassUseW", new CheckBox("Use W",false));
                     HarassMenu.Add("harassUseR", new CheckBox("Use R")); 
@@ -151,7 +148,7 @@ namespace Chogath
                 {
                     // Here is another option on how to use the menu, but I prefer the
                     // way that I used in the combo class
-                    LaneClearMenu = Menu.AddSubMenu("LaneClear");
+                    LaneClearMenu = Config.Menu.AddSubMenu("LaneClear");
                     LaneClearMenu.Add("laneclearUseQ", new CheckBox("Use Q"));
                     LaneClearMenu.Add("laneclearUseW", new CheckBox("Use W",false));
                     LaneClearMenu.Add("laneclearUseR", new CheckBox("Use R")); 
@@ -190,7 +187,7 @@ namespace Chogath
                 {
                     // Here is another option on how to use the menu, but I prefer the
                     // way that I used in the combo class
-                    JungleClearMenu = Menu.AddSubMenu("Jungle Clear");
+                    JungleClearMenu = Config.Menu.AddSubMenu("Jungle Clear");
                     JungleClearMenu.Add("jungleclearUseQ", new CheckBox("Use Q"));
                     JungleClearMenu.Add("jungleclearUseW", new CheckBox("Use W",false));
                     JungleClearMenu.Add("jungleclearUseR", new CheckBox("Use R"));
@@ -229,7 +226,7 @@ namespace Chogath
                 {
                     // Here is another option on how to use the menu, but I prefer the
                     // way that I used in the combo class
-                    MiscMenu = Menu.AddSubMenu("Misc");
+                    MiscMenu = Config.Menu.AddSubMenu("Misc");
                     MiscMenu.Add("miscQ", new CheckBox("Use Q for Gapcloser and Interupter"));
                     MiscMenu.Add("miscW", new CheckBox("Use W for Gapcloser and Interupter"));
                     MiscMenu.Add("miscR", new CheckBox("Use R to kill big mob")); // Default false
