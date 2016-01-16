@@ -16,13 +16,13 @@ namespace Chogath
         static SpellManager()
         {
             // Initialize spells
-            Q = new Spell.Skillshot(SpellSlot.Q,950,EloBuddy.SDK.Enumerations.SkillShotType.Circular,750,1520,70);
+            Q = new Spell.Skillshot(SpellSlot.Q,950,EloBuddy.SDK.Enumerations.SkillShotType.Circular,625,1520,475);
 
             // TODO: Uncomment the other spells to initialize them
-            W = new Spell.Skillshot(SpellSlot.W, 650, EloBuddy.SDK.Enumerations.SkillShotType.Cone, 250,int.MaxValue,50);
+            W = new Spell.Skillshot(SpellSlot.W, 575, EloBuddy.SDK.Enumerations.SkillShotType.Cone, 250,int.MaxValue,50);
             W.AllowedCollisionCount = int.MaxValue;
             E = new Spell.Active(SpellSlot.E);
-            R = new Spell.Targeted(SpellSlot.R,500);
+            R = new Spell.Targeted(SpellSlot.R,250);
         }
 
         public static void Initialize()

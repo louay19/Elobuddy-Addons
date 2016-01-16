@@ -76,7 +76,7 @@ namespace Chogath
                     // Initialize the menu values
                     ComboMenu = Config.Menu.AddSubMenu("Combo");
                     ComboMenu.Add("comboUseQ", new CheckBox("Use Q"));
-                    ComboMenu.Add("comboUseW", new CheckBox("Use W",false));
+                    ComboMenu.Add("comboUseW", new CheckBox("Use W"));
                     ComboMenu.Add("comboUseR", new CheckBox("Use R"));
                 }
 
@@ -111,7 +111,7 @@ namespace Chogath
                     // way that I used in the combo class
                     HarassMenu = Config.Menu.AddSubMenu("Harass");
                     HarassMenu.Add("harassUseQ", new CheckBox("Use Q"));
-                    HarassMenu.Add("harassUseW", new CheckBox("Use W",false));
+                    HarassMenu.Add("harassUseW", new CheckBox("Use W"));
                     HarassMenu.Add("harassUseR", new CheckBox("Use R")); 
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
@@ -150,7 +150,7 @@ namespace Chogath
                     // way that I used in the combo class
                     LaneClearMenu = Config.Menu.AddSubMenu("LaneClear");
                     LaneClearMenu.Add("laneclearUseQ", new CheckBox("Use Q"));
-                    LaneClearMenu.Add("laneclearUseW", new CheckBox("Use W",false));
+                    LaneClearMenu.Add("laneclearUseW", new CheckBox("Use W"));
                     LaneClearMenu.Add("laneclearUseR", new CheckBox("Use R")); 
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
@@ -189,7 +189,7 @@ namespace Chogath
                     // way that I used in the combo class
                     JungleClearMenu = Config.Menu.AddSubMenu("Jungle Clear");
                     JungleClearMenu.Add("jungleclearUseQ", new CheckBox("Use Q"));
-                    JungleClearMenu.Add("jungleclearUseW", new CheckBox("Use W",false));
+                    JungleClearMenu.Add("jungleclearUseW", new CheckBox("Use W"));
                     JungleClearMenu.Add("jungleclearUseR", new CheckBox("Use R"));
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
