@@ -25,7 +25,7 @@ namespace Chogath.Modes
                 if (Settings.UseQ && _Player.Distance(target) <= Q.Range)
                 {
                     var Pred = Q.GetPrediction(target);
-                    if (Pred.HitChancePercent > 70 && Q.IsReady())
+                    if (Pred.HitChancePercent > Config.Modes.Misc.HitChance && Q.IsReady())
                     {
                         if (Q.Cast(Pred.CastPosition)) return;
                     }
