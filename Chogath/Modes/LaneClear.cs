@@ -30,7 +30,7 @@ namespace Chogath.Modes
                 if (minion !=  null && minion.IsValidTarget(750))
                 {
 
-                    if(minion.CountEnemiesInRange(150) > 2)
+                    if(minion.CountAlliesInRange(150) > 2)
                     {
                         if (Q.IsReady() && Settings.UseQ)
                         {
