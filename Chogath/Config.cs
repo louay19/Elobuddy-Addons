@@ -233,7 +233,7 @@ namespace Chogath
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
                     // in the display name will replace it with 0=current 1=min and 2=max value
-                    MiscMenu.Add("hitchance", new Slider("Hit chance for Q skill ({0}%)", 75));
+                    MiscMenu.Add("hitchance", new Slider("Hit chance for Q skill ({0}%)", 100));
                 }
 
                 public static void Initialize()

@@ -13,7 +13,6 @@ namespace Kindred.Modes
 
         public override void Execute()
         {
-            if (!R.IsReady()) return;
             if (Player.HealthPercent < Config.Misc.LowHP && CheckEnemyHeroesAround(Player) > 0)
             {
                 if (R.Cast(Player)) return;
@@ -21,7 +20,7 @@ namespace Kindred.Modes
 
             var allylowHP = EntityManager.Heroes.Allies.Where(o => o.HealthPercent < Config.Misc.LowHP
                                                              && o.Distance(Player) < R.Range).First();
-            if (allylowHP != null && CheckEnemyHeroesAround(allylowHP) > 0)
+            if (allylowHP != null && allylowHP.CountEnemiesInRange(1500) > 1)
             {
                 if (R.Cast(allylowHP)) return;
             }

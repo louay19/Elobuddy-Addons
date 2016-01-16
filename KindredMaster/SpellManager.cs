@@ -25,7 +25,7 @@ namespace Kindred
             Q = new Spell.Targeted(SpellSlot.Q, 440);
             W = new Spell.Active(SpellSlot.W, 1000);
             E = new Spell.Targeted(SpellSlot.E, 600);
-            R = new Spell.Targeted(SpellSlot.R, 600);
+            R = new Spell.Targeted(SpellSlot.R, 750);
 
             Spells = (new Spell.SpellBase[] { Q, W, E, R }).OrderByDescending(o => o.Range).ToArray();
         }
