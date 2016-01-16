@@ -79,8 +79,8 @@ namespace Chogath
                     // Initialize the menu values
                     ComboMenu = Menu.AddSubMenu("Combo");
                     ComboMenu.Add("comboUseQ", new CheckBox("Use Q"));
-                    ComboMenu.Add("comboUseW", new CheckBox("Use W"));
-                    ComboMenu.Add("comboUseR", new CheckBox("Use R")); // Default false
+                    ComboMenu.Add("comboUseW", new CheckBox("Use W",false));
+                    ComboMenu.Add("comboUseR", new CheckBox("Use R"));
                 }
 
                 public static void Initialize()
@@ -114,8 +114,8 @@ namespace Chogath
                     // way that I used in the combo class
                     HarassMenu = Menu.AddSubMenu("Harass");
                     HarassMenu.Add("harassUseQ", new CheckBox("Use Q"));
-                    HarassMenu.Add("harassUseW", new CheckBox("Use W"));
-                    HarassMenu.Add("harassUseR", new CheckBox("Use R")); // Default false
+                    HarassMenu.Add("harassUseW", new CheckBox("Use W",false));
+                    HarassMenu.Add("harassUseR", new CheckBox("Use R")); 
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
                     // in the display name will replace it with 0=current 1=min and 2=max value
@@ -153,8 +153,8 @@ namespace Chogath
                     // way that I used in the combo class
                     LaneClearMenu = Menu.AddSubMenu("LaneClear");
                     LaneClearMenu.Add("laneclearUseQ", new CheckBox("Use Q"));
-                    LaneClearMenu.Add("laneclearUseW", new CheckBox("Use W"));
-                    LaneClearMenu.Add("laneclearUseR", new CheckBox("Use R", false)); // Default false
+                    LaneClearMenu.Add("laneclearUseW", new CheckBox("Use W",false));
+                    LaneClearMenu.Add("laneclearUseR", new CheckBox("Use R")); 
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
                     // in the display name will replace it with 0=current 1=min and 2=max value
@@ -192,8 +192,8 @@ namespace Chogath
                     // way that I used in the combo class
                     JungleClearMenu = Menu.AddSubMenu("Jungle Clear");
                     JungleClearMenu.Add("jungleclearUseQ", new CheckBox("Use Q"));
-                    JungleClearMenu.Add("jungleclearUseW", new CheckBox("Use W"));
-                    JungleClearMenu.Add("jungleclearUseR", new CheckBox("Use R", false)); // Default false
+                    JungleClearMenu.Add("jungleclearUseW", new CheckBox("Use W",false));
+                    JungleClearMenu.Add("jungleclearUseR", new CheckBox("Use R"));
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
                     // in the display name will replace it with 0=current 1=min and 2=max value
