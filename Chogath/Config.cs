@@ -61,25 +61,26 @@ namespace Chogath
 
             public static class Combo
             {
+                static readonly Menu ComboMenu;
                 public static bool UseQ
                 {
-                    get { return Menu["comboUseQ"].Cast<CheckBox>().CurrentValue; }
+                    get { return ComboMenu["comboUseQ"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseW
                 {
-                    get { return Menu["comboUseW"].Cast<CheckBox>().CurrentValue; }
+                    get { return ComboMenu["comboUseW"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseR
                 {
-                    get { return Menu["comboUseR"].Cast<CheckBox>().CurrentValue; }
+                    get { return ComboMenu["comboUseR"].Cast<CheckBox>().CurrentValue; }
                 }
                 static Combo()
                 {
                     // Initialize the menu values
-                    Menu.AddGroupLabel("Combo");
-                    Menu.Add("comboUseQ", new CheckBox("Use Q"));
-                    Menu.Add("comboUseW", new CheckBox("Use W"));
-                    Menu.Add("comboUseR", new CheckBox("Use R")); // Default false
+                    ComboMenu = Menu.AddSubMenu("Combo");
+                    ComboMenu.Add("comboUseQ", new CheckBox("Use Q"));
+                    ComboMenu.Add("comboUseW", new CheckBox("Use W"));
+                    ComboMenu.Add("comboUseR", new CheckBox("Use R")); // Default false
                 }
 
                 public static void Initialize()
@@ -89,35 +90,36 @@ namespace Chogath
 
             public static class Harass
             {
+                static readonly Menu HarassMenu;
                 public static bool UseQ
                 {
-                    get { return Menu["harassUseQ"].Cast<CheckBox>().CurrentValue; }
+                    get { return HarassMenu["harassUseQ"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseW
                 {
-                    get { return Menu["harassUseW"].Cast<CheckBox>().CurrentValue; }
+                    get { return HarassMenu["harassUseW"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseR
                 {
-                    get { return Menu["harassUseR"].Cast<CheckBox>().CurrentValue; }
+                    get { return HarassMenu["harassUseR"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static int Mana
                 {
-                    get { return Menu["harassMana"].Cast<Slider>().CurrentValue; }
+                    get { return HarassMenu["harassMana"].Cast<Slider>().CurrentValue; }
                 }
 
                 static Harass()
                 {
                     // Here is another option on how to use the menu, but I prefer the
                     // way that I used in the combo class
-                    Menu.AddGroupLabel("Harass");
-                    Menu.Add("harassUseQ", new CheckBox("Use Q"));
-                    Menu.Add("harassUseW", new CheckBox("Use W"));
-                    Menu.Add("harassUseR", new CheckBox("Use R")); // Default false
+                    HarassMenu = Menu.AddSubMenu("Harass");
+                    HarassMenu.Add("harassUseQ", new CheckBox("Use Q"));
+                    HarassMenu.Add("harassUseW", new CheckBox("Use W"));
+                    HarassMenu.Add("harassUseR", new CheckBox("Use R")); // Default false
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
                     // in the display name will replace it with 0=current 1=min and 2=max value
-                    Menu.Add("harassMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
+                    HarassMenu.Add("harassMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
                 }
 
                 public static void Initialize()
@@ -127,35 +129,36 @@ namespace Chogath
 
             public static class LaneClear
             {
+                private static readonly Menu LaneClearMenu;
                 public static bool UseQ
                 {
-                    get { return Menu["laneclearUseQ"].Cast<CheckBox>().CurrentValue; }
+                    get { return LaneClearMenu["laneclearUseQ"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseW
                 {
-                    get { return Menu["laneclearUseW"].Cast<CheckBox>().CurrentValue; }
+                    get { return LaneClearMenu["laneclearUseW"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseR
                 {
-                    get { return Menu["laneclearUseR"].Cast<CheckBox>().CurrentValue; }
+                    get { return LaneClearMenu["laneclearUseR"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static int Mana
                 {
-                    get { return Menu["laneclearMana"].Cast<Slider>().CurrentValue; }
+                    get { return LaneClearMenu["laneclearMana"].Cast<Slider>().CurrentValue; }
                 }
 
                 static LaneClear()
                 {
                     // Here is another option on how to use the menu, but I prefer the
                     // way that I used in the combo class
-                    Menu.AddGroupLabel("Lane Clear");
-                    Menu.Add("laneclearUseQ", new CheckBox("Use Q"));
-                    Menu.Add("laneclearUseW", new CheckBox("Use W"));
-                    Menu.Add("laneclearUseR", new CheckBox("Use R", false)); // Default false
+                    LaneClearMenu = Menu.AddSubMenu("LaneClear");
+                    LaneClearMenu.Add("laneclearUseQ", new CheckBox("Use Q"));
+                    LaneClearMenu.Add("laneclearUseW", new CheckBox("Use W"));
+                    LaneClearMenu.Add("laneclearUseR", new CheckBox("Use R", false)); // Default false
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
                     // in the display name will replace it with 0=current 1=min and 2=max value
-                    Menu.Add("laneclearMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
+                    LaneClearMenu.Add("laneclearMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
                 }
 
                 public static void Initialize()
@@ -165,35 +168,75 @@ namespace Chogath
 
             public static class JungleClear
             {
+                private static readonly Menu JungleClearMenu;
                 public static bool UseQ
                 {
-                    get { return Menu["jungleclearUseQ"].Cast<CheckBox>().CurrentValue; }
+                    get { return JungleClearMenu["jungleclearUseQ"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseW
                 {
-                    get { return Menu["jungleclearUseW"].Cast<CheckBox>().CurrentValue; }
+                    get { return JungleClearMenu["jungleclearUseW"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseR
                 {
-                    get { return Menu["jungleclearUseR"].Cast<CheckBox>().CurrentValue; }
+                    get { return JungleClearMenu["jungleclearUseR"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static int Mana
                 {
-                    get { return Menu["jungleclearMana"].Cast<Slider>().CurrentValue; }
+                    get { return JungleClearMenu["jungleclearMana"].Cast<Slider>().CurrentValue; }
                 }
 
                 static JungleClear()
                 {
                     // Here is another option on how to use the menu, but I prefer the
                     // way that I used in the combo class
-                    Menu.AddGroupLabel("Jungle Clear");
-                    Menu.Add("jungleclearUseQ", new CheckBox("Use Q"));
-                    Menu.Add("jungleclearUseW", new CheckBox("Use W"));
-                    Menu.Add("jungleclearUseR", new CheckBox("Use R", false)); // Default false
+                    JungleClearMenu = Menu.AddSubMenu("Jungle Clear");
+                    JungleClearMenu.Add("jungleclearUseQ", new CheckBox("Use Q"));
+                    JungleClearMenu.Add("jungleclearUseW", new CheckBox("Use W"));
+                    JungleClearMenu.Add("jungleclearUseR", new CheckBox("Use R", false)); // Default false
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
                     // in the display name will replace it with 0=current 1=min and 2=max value
-                    Menu.Add("jungleclearMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
+                    JungleClearMenu.Add("jungleclearMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
+                }
+
+                public static void Initialize()
+                {
+                }
+            }
+
+            public static class Misc
+            {
+                private static readonly Menu MiscMenu;
+                public static bool MiscQ
+                {
+                    get { return MiscMenu["miscQ"].Cast<CheckBox>().CurrentValue; }
+                }
+                public static bool MiscW
+                {
+                    get { return MiscMenu["miscW"].Cast<CheckBox>().CurrentValue; }
+                }
+                public static bool MiscR
+                {
+                    get { return MiscMenu["miscR"].Cast<CheckBox>().CurrentValue; }
+                }
+                public static int HitChance
+                {
+                    get { return MiscMenu["hitchance"].Cast<Slider>().CurrentValue; }
+                }
+
+                static Misc()
+                {
+                    // Here is another option on how to use the menu, but I prefer the
+                    // way that I used in the combo class
+                    MiscMenu = Menu.AddSubMenu("Misc");
+                    MiscMenu.Add("miscQ", new CheckBox("Use Q for Gapcloser and Interupter"));
+                    MiscMenu.Add("miscW", new CheckBox("Use W for Gapcloser and Interupter"));
+                    MiscMenu.Add("miscR", new CheckBox("Use R to kill big mob")); // Default false
+
+                    // Adding a slider, we have a little more options with them, using {0} {1} and {2}
+                    // in the display name will replace it with 0=current 1=min and 2=max value
+                    MiscMenu.Add("hitchance", new Slider("Hit chance for Q skill ({0}%)", 75));
                 }
 
                 public static void Initialize()

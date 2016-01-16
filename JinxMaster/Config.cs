@@ -110,23 +110,23 @@ namespace JinxMaster
                 public static readonly Menu HarassMenu;
                 public static bool UseQ
                 {
-                    get { return Menu["harassUseQ"].Cast<CheckBox>().CurrentValue; }
+                    get { return HarassMenu["harassUseQ"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseW
                 {
-                    get { return Menu["harassUseW"].Cast<CheckBox>().CurrentValue; }
+                    get { return HarassMenu["harassUseW"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseE
                 {
-                    get { return Menu["harassUseE"].Cast<CheckBox>().CurrentValue; }
+                    get { return HarassMenu["harassUseE"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseR
                 {
-                    get { return Menu["harassUseR"].Cast<CheckBox>().CurrentValue; }
+                    get { return HarassMenu["harassUseR"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static int Mana
                 {
-                    get { return Menu["harassMana"].Cast<Slider>().CurrentValue; }
+                    get { return HarassMenu["harassMana"].Cast<Slider>().CurrentValue; }
                 }
 
                 static Harass()

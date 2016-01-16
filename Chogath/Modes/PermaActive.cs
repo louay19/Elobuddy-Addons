@@ -1,4 +1,6 @@
-﻿using EloBuddy.SDK;
+﻿using EloBuddy;
+using EloBuddy.SDK;
+using System.Linq;
 
 namespace Chogath.Modes
 {
@@ -14,6 +16,17 @@ namespace Chogath.Modes
         {
             if (_Player.Spellbook.GetSpell(EloBuddy.SpellSlot.E).ToggleState != 2) E.Cast();
             // TODO: Add permaactive logic here, good for spells like Ignite or Smite
+            if(R.IsReady() && Config.Modes.Misc.MiscR )
+            {
+                var bigmob = BigMobSelect();
+                if(bigmob != null && Extensions.GetDamageToTarget(SpellSlot.R, bigmob) > bigmob.Health)
+                R.Cast(bigmob);
+            }
+        }
+
+        private Obj_AI_Minion BigMobSelect()
+        {
+            return EntityManager.MinionsAndMonsters.GetJungleMonsters(_Player.Position, 450).Where(m => m.Name == "SRU_Baron" || m.Name == "SRU_Dragon").First();
         }
     }
 }
