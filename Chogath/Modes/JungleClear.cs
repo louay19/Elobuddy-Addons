@@ -18,7 +18,7 @@ namespace Chogath.Modes
             // TODO: Add jungleclear logic here
 
             if (!Q.IsReady() && !W.IsReady()&& !R.IsReady())return;
-            if (R.IsReady() && Settings.UseR)
+            if (R.IsReady() && Settings.UseR && _Player.GetBuff("Feast").Count != 6)
             {
                 var tar = EntityManager.MinionsAndMonsters.GetJungleMonsters(_Player.Position, 350).Where(m => m.Health < Extensions.GetDamageToTarget(SpellSlot.R, m)).First();
                 if (tar.IsValidTarget(350))

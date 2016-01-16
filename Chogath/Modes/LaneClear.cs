@@ -17,7 +17,7 @@ namespace Chogath.Modes
         {
             if (!Q.IsReady() && !W.IsReady() && !R.IsReady()) return;
 
-            if (R.IsReady() && Settings.UseR)
+            if (R.IsReady() && Settings.UseR && _Player.GetBuff("Feast").Count != 6)
             {
                 var tar = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, _Player.Position, 350).Where(m => m.Health < Extensions.GetDamageToTarget(SpellSlot.R, m) && m.IsValid).First();
                 if (tar.IsValidTarget(350))
