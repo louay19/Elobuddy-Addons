@@ -16,7 +16,7 @@ namespace Chogath
         static SpellManager()
         {
             // Initialize spells
-            Q = new Spell.Skillshot(SpellSlot.Q,950,EloBuddy.SDK.Enumerations.SkillShotType.Circular,400,500,50);
+            Q = new Spell.Skillshot(SpellSlot.Q,950,EloBuddy.SDK.Enumerations.SkillShotType.Circular,625,1200,50);
 
             // TODO: Uncomment the other spells to initialize them
             W = new Spell.Skillshot(SpellSlot.W, 575, EloBuddy.SDK.Enumerations.SkillShotType.Cone, 250,1750,100);

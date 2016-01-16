@@ -15,7 +15,7 @@ namespace Chogath.Modes
 
         public override void Execute()
         {
-            if (R.IsReady() && Settings.UseR && _Player.GetBuff("Feast").Count != 6)
+            if (R.IsReady() && Settings.UseR && (_Player.GetBuff("Feast").Count != 6 || !_Player.HasBuff("Feast")))
             {
                 var tar = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, _Player.Position, 350).Where(m => m.Health < Extensions.GetDamageToTarget(SpellSlot.R, m) && m.IsValid).First();
                 if (tar.IsValidTarget(350))
@@ -23,18 +23,16 @@ namespace Chogath.Modes
                     R.Cast(tar);             
                 }
             }
+            var minion = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, _Player.Position, 950).Where(m => m.IsValid && m.Health < Extensions.GetDamageToTarget(SpellSlot.E, m)).First();
 
             if (_Player.ManaPercent > Settings.Mana)
             {
-                var minion = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, _Player.Position, 1000).Where(m => m.Health < Extensions.GetDamageToTarget(SpellSlot.Q, m) && m.IsValidTarget(750)).First();
-                if (minion !=  null && minion.IsValidTarget(750))
                 {
 
-                    if(minion.CountAlliesInRange(150) > 2)
+                    if(minion.CountAlliesInRange(400) > 2)
                     {
                         if (Q.IsReady() && Settings.UseQ)
                         {
-
                             Q.Cast(minion);
                         }
 
