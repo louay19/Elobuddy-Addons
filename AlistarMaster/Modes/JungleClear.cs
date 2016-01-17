@@ -1,5 +1,6 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
+using System.Linq;
 using Settings = AlistarMaster.Config.Modes.JungleClear;
 
 namespace AlistarMaster.Modes
@@ -14,7 +15,11 @@ namespace AlistarMaster.Modes
 
         public override void Execute()
         {
-            if (Config.Modes.Misc.Keepuppassivebuff && E.IsReady()) E.Cast();
+            var junglemonsters = EntityManager.MinionsAndMonsters.GetJungleMonsters(MyHero.Position, Q.Range, true);
+            if (junglemonsters.Count() >= 2 && Q.IsReady()) Q.Cast();
+            var tar = junglemonsters.FirstOrDefault();
+            if (tar.IsValidTarget(W.Range) && W.IsReady() && tar.Health < Extensions.GetDamageToTarget(SpellSlot.W, tar))
+                W.Cast(tar);
             // TODO: Add jungleclear logic here
         }
     }
