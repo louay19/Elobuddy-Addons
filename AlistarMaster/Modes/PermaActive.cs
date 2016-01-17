@@ -18,8 +18,7 @@ namespace AlistarMaster.Modes
             bool check = enemyheroes.Count() > 0;
             // TODO: Add permaactive logic here, good for spells like Ignite or Smite
             if (MyHero.HealthPercent < Config.Modes.Misc.LowHPR && R.IsReady() && check) R.Cast();
-            if (MyHero.HealthPercent < Config.Modes.Misc.LowHPE && E.IsReady()) E.Cast();
-            if (Config.Modes.Misc.Keepuppassivebuff && E.IsReady() && check) E.Cast();
+            if (MyHero.HealthPercent < Config.Modes.Misc.LowHPE && E.IsReady()) E.Cast();           
         }
     }
 }

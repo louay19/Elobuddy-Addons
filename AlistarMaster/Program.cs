@@ -75,8 +75,8 @@ namespace AlistarMaster
             // TODO: Uncomment if you want those enabled aswell, but remember to enable them
             // TODO: in the SpellManager aswell, otherwise you will get a NullReferenceException
             // Debug comboQW
-            var pos = Player.Instance.Position.To2D();
-            Drawing.DrawText(10, 10, System.Drawing.Color.Red, "ComboQW is " + Config.Modes.Combo.comboQW);
+           
+            //Drawing.DrawText(10, 10, System.Drawing.Color.Red, "ComboQW is " + Config.Modes.Combo.comboQW);
         }
     }
 }

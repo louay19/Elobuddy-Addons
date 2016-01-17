@@ -37,6 +37,7 @@ namespace AlistarMaster.Modes
             {
                 Q.Cast();
             }
+            if (Config.Modes.Misc.Keepuppassivebuff && E.IsReady()) E.Cast();
         }
     }
 }

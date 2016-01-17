@@ -14,6 +14,7 @@ namespace AlistarMaster.Modes
 
         public override void Execute()
         {
+            if (Config.Modes.Misc.Keepuppassivebuff && E.IsReady()) E.Cast();
             // TODO: Add jungleclear logic here
         }
     }

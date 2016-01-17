@@ -16,8 +16,8 @@ namespace AlistarMaster.Modes
         public override void Execute()
         {
             var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, MyHero.Position, Q.Range, true)
-                .Where(m => m.Health < 150);
-            if (minions.Count() > 3) Q.Cast();
+                .Where(m => m.Health < 200);
+            if (minions.Count() > 2) Q.Cast();
                 // TODO: Add laneclear logic here
         }
     }
