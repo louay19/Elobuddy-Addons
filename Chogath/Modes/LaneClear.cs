@@ -14,34 +14,31 @@ namespace Chogath.Modes
         }
 
         public override void Execute()
-        {
-            if (R.IsReady() && Settings.UseR && (_Player.GetBuff("Feast").Count != 6 || !_Player.HasBuff("Feast")))
+        {           
+            if (R.IsReady() && Settings.UseR)
             {
-                var tar = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, _Player.Position, 350).Where(m => m.Health < Extensions.GetDamageToTarget(SpellSlot.R, m) && m.IsValid).First();
-                if (tar.IsValidTarget(350))
-                {                  
-                    R.Cast(tar);             
-                }
+                var Rbuff = _Player.GetBuff("Feast");
+                var tar = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, _Player.Position, 500).Where(m => m.Health < Extensions.GetDamageToTarget(SpellSlot.R, m) && m.IsValid).First();
+                if (Rbuff == null) R.Cast(tar);
+                if (Rbuff.Count != 6) R.Cast(tar);          
             }
-            var minion = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, _Player.Position, 950).Where(m => m.IsValid && m.Health < Extensions.GetDamageToTarget(SpellSlot.E, m)).First();
+           
 
             if (_Player.ManaPercent > Settings.Mana)
             {
+                var minion = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, _Player.Position, 950).Where(m => m.IsValid && m.Health < Extensions.GetDamageToTarget(SpellSlot.W, m) + Extensions.GetDamageToTarget(SpellSlot.E, m)).First();
+                if(Extensions.CheckBestLaneFarmTarget(minion,950))
                 {
-
-                    if(minion.CountAlliesInRange(400) > 2)
+                    if (Q.IsReady() && Settings.UseQ && minion.IsValidTarget(Q.Range))
                     {
-                        if (Q.IsReady() && Settings.UseQ)
-                        {
-                            Q.Cast(minion);
-                        }
+                        Q.Cast(minion.ServerPosition);
+                    }
 
-                        if (W.IsReady() && Settings.UseW)
-                        {
-                            W.Cast(minion);
-                        }
-                    }                   
-                }            
+                    if (W.IsReady() && Settings.UseW && minion.IsValidTarget(W.Range))
+                    {
+                        W.Cast(minion.ServerPosition);
+                    }
+                }                               
             }
         }
     }

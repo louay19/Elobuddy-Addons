@@ -24,23 +24,20 @@ namespace Chogath.Modes
             {
                
 
-                if (Settings.UseQ && Q.IsReady() &&  _Player.Distance(target) <= (Q.Range + 175))
+                if (Settings.UseQ && Q.IsReady() &&  target.IsValidTarget(Q.Range))
                 {
                     var Pred = Q.GetPrediction(target);
-                    if (Pred.HitChancePercent > Config.Modes.Misc.HitChance )
-                    {
-                        Q.Cast(Pred.CastPosition);
-                    }
-                    
+                    if(Pred.HitChance == EloBuddy.SDK.Enumerations.HitChance.Collision)
+                       Q.Cast(Pred.CastPosition); 
                 }
 
-                if (Settings.UseW && _Player.Distance(target) <= W.Range && W.IsReady())
+                if (Settings.UseW && W.IsReady() && target.IsValidTarget(W.Range))
                 {
 
                         if (W.Cast(target)) return;
                 }
 
-                if (Settings.UseR && _Player.Distance(target) <= R.Range && R.IsReady() && Extensions.GetDamageToTarget(SpellSlot.R, target) > target.Health)
+                if (Settings.UseR && R.IsReady() && target.IsValidTarget(R.Range) && Extensions.GetDamageToTarget(SpellSlot.R, target) > target.Health)
                 {
                         if (R.Cast(target)) return;
                 }

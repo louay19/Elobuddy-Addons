@@ -15,24 +15,25 @@ namespace Chogath.Modes
 
         public override void Execute()
         {
-            var minion = Orbwalker.LastTarget;
+            
             // TODO: Add jungleclear logic here
-            if (R.IsReady() && Settings.UseR && (_Player.GetBuff("Feast").Count != 6 || !_Player.HasBuff("Feast"))) 
+            if (R.IsReady() && Settings.UseR)
             {
-                var tar = EntityManager.MinionsAndMonsters.GetJungleMonsters(_Player.Position, 350).Where(m => m.Health < Extensions.GetDamageToTarget(SpellSlot.R, m)).First();
-                if (tar.IsValidTarget(350))
-                {
-                    R.Cast(tar);
-                }
+                var Rbuff = _Player.GetBuff("Feast");
+                var tar = EntityManager.MinionsAndMonsters.GetJungleMonsters(_Player.Position, 500).Where(m => m.Health < Extensions.GetDamageToTarget(SpellSlot.R, m) && m.IsValid).First();
+                if (Rbuff == null) R.Cast(tar);
+                if (Rbuff.Count != 6) R.Cast(tar);
             }
-            if (_Player.ManaPercent > Settings.Mana && minion.Type == GameObjectType.NeutralMinionCamp)
+
+            if (_Player.ManaPercent > Settings.Mana)
             {           
-                if (Q.IsReady() && Settings.UseQ)
+                var minion = EntityManager.MinionsAndMonsters.GetJungleMonsters(_Player.ServerPosition, 950f, true).FirstOrDefault();
+                if (Q.IsReady() && Settings.UseQ && minion != null) 
                 {
                     Q.Cast(minion.Position);
                 }
 
-                if (W.IsReady() && Settings.UseW)
+                if (W.IsReady() && Settings.UseW && minion != null)
                 {
                     W.Cast(minion.Position);
                 }

@@ -7,6 +7,14 @@ namespace Chogath
 {
     public static class Extensions
     {
+        public static bool CheckBestLaneFarmTarget(Obj_AI_Base tar,float range)
+        {
+            return EntityManager
+                .MinionsAndMonsters
+                .GetLaneMinions(EntityManager.UnitTeam.Enemy, tar.ServerPosition, range)
+                .Where( m => m.Health < Extensions.GetDamageToTarget(SpellSlot.W, m) + Extensions.GetDamageToTarget(SpellSlot.Q, m))
+                .Count() > 2;
+        }
         public static float GetDamageToTarget(this SpellSlot spell, Obj_AI_Base tar)
         {      
             float damage = 0;

@@ -12,7 +12,7 @@ namespace Chogath.Modes
 
         protected AIHeroClient _Player
         {
-            get { return Player.Instance; }
+            get { return ObjectManager.Player; }
         }
         protected Spell.Skillshot Q
         {
