@@ -15,10 +15,11 @@ namespace AlistarMaster.Modes
         public override void Execute()
         {
             var enemyheroes = EntityManager.Heroes.Enemies.Where(h => h.IsValidTarget(1550));
+            var allyheroes = EntityManager.Heroes.Allies.Where(a => a.HealthPercent < Config.Modes.Misc.LowHPE && MyHero.Distance(a) < E.Range);
             bool check = enemyheroes.Count() > 0;
             // TODO: Add permaactive logic here, good for spells like Ignite or Smite
             if (MyHero.HealthPercent < Config.Modes.Misc.LowHPR && R.IsReady() && check) R.Cast();
-            if (MyHero.HealthPercent < Config.Modes.Misc.LowHPE && E.IsReady()) E.Cast();           
+            if (allyheroes.Count() > 0 && E.IsReady()) E.Cast();           
         }
     }
 }
