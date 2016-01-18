@@ -214,7 +214,7 @@ namespace AlistarMaster
                     MiscMenu.Add("antiGapCloser", new CheckBox("Anti GapCloser Q"));
                     MiscMenu.Add("antiInterrupter", new CheckBox("Disable Channing Spell"));
                     MiscMenu.Add("keeppassiveBuff", new CheckBox("Keep passive buff always on in combat"));
-                    MiscMenu.Add("misclowhpUseE", new Slider("Lowest HP for R usage in percent ({0}%)", 50));
+                    MiscMenu.Add("misclowhpUseE", new Slider("Lowest HP for E usage in percent ({0}%)", 50));
                     MiscMenu.Add("misclowhpUseR", new Slider("Lowest HP for R usage in percent ({0}%)", 50));
                 }
 

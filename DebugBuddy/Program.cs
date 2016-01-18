@@ -22,6 +22,14 @@ namespace DebugBuddy
             Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
             Interrupter.OnInterruptableSpell += Interrupter_OnInterruptableSpell;
             Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
+            Obj_AI_Base.OnBuffGain += Obj_AI_Base_OnBuffGain;
+        }
+
+        private static void Obj_AI_Base_OnBuffGain(Obj_AI_Base sender, Obj_AI_BaseBuffGainEventArgs args)
+        {
+            if (!sender.IsMe) return;
+            Chat.Print(args.Buff.Name);
+            throw new NotImplementedException();
         }
 
         private static void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
@@ -44,7 +52,7 @@ namespace DebugBuddy
         }
 
         private static void OnDraw(EventArgs args)
-        {
+        { 
             // Draw range circles of our spells
             //Circle.Draw(Color.Red, SpellManager.Q.Range, Player.Instance.Position);
             // TODO: Uncomment if you want those enabled aswell, but remember to enable them

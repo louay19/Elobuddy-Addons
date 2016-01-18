@@ -14,6 +14,11 @@ namespace AlistarMaster.Modes
 
         public override void Execute()
         {
+            if (MyHero.HasBuff("recall"))
+            {
+                Chat.Print("Dang tele");
+                return;
+            }
             var enemyheroes = EntityManager.Heroes.Enemies.Where(h => h.IsValidTarget(1550));
             var allyheroes = EntityManager.Heroes.Allies.Where(a => a.HealthPercent < Config.Modes.Misc.LowHPE && MyHero.Distance(a) < E.Range);
             bool check = enemyheroes.Count() > 0;
