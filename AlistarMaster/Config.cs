@@ -133,10 +133,6 @@ namespace AlistarMaster
                 {
                     get { return LaneClearMenu["laneclearUseW"].Cast<CheckBox>().CurrentValue; }
                 }
-                public static bool UseE
-                {
-                    get { return LaneClearMenu["laneclearUseE"].Cast<CheckBox>().CurrentValue; }
-                }
                 public static int Mana
                 {
                     get { return LaneClearMenu["laneclearMana"].Cast<Slider>().CurrentValue; }
@@ -148,7 +144,6 @@ namespace AlistarMaster
                     LaneClearMenu = Config.Menu.AddSubMenu("Lane Clear");
                     LaneClearMenu.Add("laneclearUseQ", new CheckBox("Use Q"));
                     LaneClearMenu.Add("laneclearUseW", new CheckBox("Use W"));
-                    LaneClearMenu.Add("laneclearUseE", new CheckBox("Use E"));
                     LaneClearMenu.Add("laneclearMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
                 }
 
@@ -168,10 +163,6 @@ namespace AlistarMaster
                 {
                     get { return JungleClearMenu["jungleclearUseW"].Cast<CheckBox>().CurrentValue; }
                 }
-                public static bool UseE
-                {
-                    get { return JungleClearMenu["jungleclearUseE"].Cast<CheckBox>().CurrentValue; }
-                }
                 public static int Mana
                 {
                     get { return JungleClearMenu["jungleclearMana"].Cast<Slider>().CurrentValue; }
@@ -183,7 +174,6 @@ namespace AlistarMaster
                     JungleClearMenu = Config.Menu.AddSubMenu("Jungle Clear");
                     JungleClearMenu.Add("jungleclearUseQ", new CheckBox("Use Q"));
                     JungleClearMenu.Add("jungleclearUseW", new CheckBox("Use W"));
-                    JungleClearMenu.Add("jungleclearUseE", new CheckBox("Use E"));
                     JungleClearMenu.Add("jungleclearMana", new Slider("Maximum mana usage in percent ({0}%)", 40));
 
                 }

@@ -17,7 +17,7 @@ namespace AlistarMaster.Modes
         {
             var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, MyHero.Position, Q.Range, true)
                 .Where(m => m.Health < Extensions.GetDamageToTarget(SpellSlot.Q, m));
-            if (minions.Count() >= 2) Q.Cast();
+            if (minions.Count() > 1) Q.Cast();
                 // TODO: Add laneclear logic here
         }
     }

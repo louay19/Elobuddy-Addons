@@ -14,10 +14,10 @@ namespace AlistarMaster
             {
                 case SpellSlot.Q:
                     damage = new float[] { 60, 105, 150, 195, 240 }[SpellManager.Q.Level - 1] + 0.5f * Player.Instance.TotalMagicalDamage;
-                    return Player.Instance.CalculateDamageOnUnit(tar, DamageType.Magical, damage) - 20.0f;
+                    return Player.Instance.CalculateDamageOnUnit(tar, DamageType.Magical, damage) - 10.0f;
                 case SpellSlot.W:
                     damage = new float[] { 55, 110, 165, 220, 275 }[SpellManager.W.Level - 1] + 0.7f * Player.Instance.TotalMagicalDamage;
-                    return Player.Instance.CalculateDamageOnUnit(tar, DamageType.Magical, damage) - 20.0f;
+                    return Player.Instance.CalculateDamageOnUnit(tar, DamageType.Magical, damage) - 10.0f;
                 default:
                     return 0;
             }
