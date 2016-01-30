@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using AddonTemplate.Modes;
+using GalioMaster.Modes;
 using EloBuddy;
 using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Utils;
 
-namespace AddonTemplate
+namespace GalioMaster
 {
     public static class ModeManager
     {

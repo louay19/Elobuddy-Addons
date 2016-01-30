@@ -2,9 +2,9 @@
 using EloBuddy.SDK;
 
 // Using the config like this makes your life easier, trust me
-using Settings = AddonTemplate.Config.Modes.Harass;
+using Settings = GalioMaster.Config.Harass;
 
-namespace AddonTemplate.Modes
+namespace GalioMaster.Modes
 {
     public sealed class Harass : ModeBase
     {

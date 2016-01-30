@@ -1,6 +1,6 @@
 ﻿using EloBuddy.SDK;
 
-namespace AddonTemplate.Modes
+namespace GalioMaster.Modes
 {
     public abstract class ModeBase
     {

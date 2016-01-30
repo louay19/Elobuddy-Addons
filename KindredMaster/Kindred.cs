@@ -47,7 +47,7 @@ namespace Kindred
 
         public static Obj_AI_Minion GetTargetMinion(float range)
         {
-            var target = Orbwalker.LaneclearMinion;
+            var target = Orbwalker.LastHitMinionsList.FirstOrDefault();
             if (ModeBase.Player.IsInRange(target, range))
             {
                 return target;

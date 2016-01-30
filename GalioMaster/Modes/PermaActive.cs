@@ -1,4 +1,4 @@
-﻿namespace AddonTemplate.Modes
+﻿namespace GalioMaster.Modes
 {
     public sealed class PermaActive : ModeBase
     {
