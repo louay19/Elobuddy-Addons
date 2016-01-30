@@ -176,9 +176,14 @@ namespace GalioMaster
         {
             private static readonly Menu Menu;
 
-            public static bool UseE
+            public static bool UseW
             {
-                get { return Menu["defensiveUseE"].Cast<CheckBox>().CurrentValue; }
+                get { return Menu["defensiveUseW"].Cast<CheckBox>().CurrentValue; }
+            }
+
+            public static bool UseR
+            {
+                get { return Menu["defensiveUseR"].Cast<CheckBox>().CurrentValue; }
             }
 
             public static int Hitchance
@@ -190,7 +195,8 @@ namespace GalioMaster
             {
                 // Initialize the menu
                 Menu = Config.Menu.AddSubMenu("Misc");
-                Menu.Add("defensiveUseE", new CheckBox("Use E when any enemy spell cast on me"));
+                Menu.Add("defensiveUseW", new CheckBox("Use W when any enemy spell cast on me"));
+                Menu.Add("defensiveUseR", new CheckBox("Use R when any enemy spell cast on me"));
                 Menu.Add("hitchance", new Slider("Hit chance at {0}%", 80, 0, 100));
             }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GalioMaster.Modes;
 using EloBuddy;
+using EloBuddy.SDK;
 using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Utils;
 
@@ -31,6 +32,19 @@ namespace GalioMaster
 
             // Listen to events we need
             Game.OnTick += OnTick;
+            Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
+        }
+
+        private static void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            if( Config.Misc.UseW
+                &&sender.IsEnemy 
+                && sender.IsValidTarget(2000) 
+                && args.End.Distance(Player.Instance.Position) < 150)
+            {
+                SpellManager.W.Cast();
+            }
+            throw new NotImplementedException();
         }
 
         public static void Initialize()

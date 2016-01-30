@@ -16,16 +16,21 @@ namespace GalioMaster.Modes
 
         public override void Execute()
         {
+            var target = TargetSelector.GetTarget(1500, DamageType.Physical);
+            if (target == null) return;
             // TODO: Add combo logic here
             // See how I used the Settings.UseQ here, this is why I love my way of using
             // the menu in the Config class!
-            if (Settings.UseQ && Q.IsReady())
+            if (Settings.UseQ && Q.IsReady() && target.IsValidTarget(Q.Range))
             {
-                var target = TargetSelector.GetTarget(Q.Range, DamageType.Physical);
-                if (target != null)
-                {
-                    Q.Cast(target);
-                }
+                var Pred = Q.GetPrediction(target);
+                if (Pred.HitChancePercent > Config.Misc.Hitchance) Q.Cast(target);
+            }
+
+            if(Settings.UseE && E.IsReady() && target.IsValidTarget(E.Range))
+            {
+                var Pred = E.GetPrediction(target);
+                if (Pred.HitChancePercent > Config.Misc.Hitchance) E.Cast(target);
             }
         }
     }

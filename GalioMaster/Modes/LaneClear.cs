@@ -1,4 +1,8 @@
-﻿using EloBuddy.SDK;
+﻿using EloBuddy;
+using EloBuddy.SDK;
+
+// Using the config like this makes your life easier, trust me
+using Settings = GalioMaster.Config.LaneClear;
 
 namespace GalioMaster.Modes
 {

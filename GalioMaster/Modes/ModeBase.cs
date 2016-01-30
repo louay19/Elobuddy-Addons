@@ -1,4 +1,5 @@
-﻿using EloBuddy.SDK;
+﻿using EloBuddy;
+using EloBuddy.SDK;
 
 namespace GalioMaster.Modes
 {
@@ -8,11 +9,15 @@ namespace GalioMaster.Modes
         // here to have full features of that spells, if you don't need that,
         // just change it to Spell.SpellBase, this way it's dynamic with still
         // the most needed functions
-        protected Spell.Active Q
+        protected AIHeroClient MyHero
+        {
+            get { return ObjectManager.Player; }
+        }
+        protected Spell.Skillshot Q
         {
             get { return SpellManager.Q; }
         }
-        protected Spell.Chargeable W
+        protected Spell.Active W
         {
             get { return SpellManager.W; }
         }
@@ -20,7 +25,7 @@ namespace GalioMaster.Modes
         {
             get { return SpellManager.E; }
         }
-        protected Spell.Targeted R
+        protected Spell.Active R
         {
             get { return SpellManager.R; }
         }
