@@ -38,17 +38,25 @@ namespace LuxMaster
             // Listen to events we need
             Drawing.OnDraw += OnDraw;
             GameObject.OnCreate += Obj_AI_Base_OnCreate;
-           // GameObject.OnDelete += Obj_AI_Base_OnDelete;
+            Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
+            GameObject.OnDelete += Obj_AI_Base_OnDelete;
         }
 
-       // private static void Obj_AI_Base_OnDelete(GameObject sender, EventArgs args)
-       // {
-       //     if (sender.Name == "Lux_Base_E_mis.troy")
-       //     {
-       //         luxEObject = null;
-       //     }
-       //     throw new NotImplementedException();
-       // }
+        private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
+        {
+            if (sender.IsEnemy && sender.IsValidTarget(3340) && e.End.Distance(Player.Instance.Position) < 500)
+            {
+
+            }
+        }
+
+        private static void Obj_AI_Base_OnDelete(GameObject sender, EventArgs args)
+         {
+             if (sender.Name == "Lux_Base_E_mis.troy")
+             {
+                 luxEObject = null;
+             }
+         }
 
         private static void Obj_AI_Base_OnCreate(GameObject sender, EventArgs args)
         {
@@ -56,7 +64,6 @@ namespace LuxMaster
             {
                 luxEObject = sender;
             }
-            throw new NotImplementedException();
         }
 
         private static void OnDraw(EventArgs args)

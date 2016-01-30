@@ -1,5 +1,6 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
+using System.Linq;
 using Settings = LuxMaster.Config.JungleClear;
 
 namespace LuxMaster.Modes
@@ -14,7 +15,7 @@ namespace LuxMaster.Modes
 
         public override void Execute()
         {
-            var jungleminion = Orbwalker.LastTarget;
+            var jungleminion = EntityManager.MinionsAndMonsters.GetJungleMonsters(MyHero.Position, 1100).First();
             if (jungleminion == null || !jungleminion.IsValid) return;
             if (Settings.UseQ && Q.IsReady() && jungleminion.IsValidTarget(Q.Range))
                 Q.Cast(jungleminion.Position);

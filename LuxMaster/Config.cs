@@ -57,10 +57,6 @@ namespace LuxMaster
             {
                 get { return Menu["comboUseQ"].Cast<CheckBox>().CurrentValue; }
             }
-            public static bool UseW
-            {
-                get { return Menu["comboUseW"].Cast<CheckBox>().CurrentValue; }
-            }
             public static bool UseE
             {
                 get { return Menu["comboUseE"].Cast<CheckBox>().CurrentValue; }
@@ -75,7 +71,6 @@ namespace LuxMaster
                 // Initialize the menu values
                 Menu = Config.Menu.AddSubMenu("Combo");
                 Menu.Add("comboUseQ", new CheckBox("Use Q"));
-                Menu.Add("comboUseW", new CheckBox("Use W"));
                 Menu.Add("comboUseE", new CheckBox("Use E"));
                 Menu.Add("comboUseR", new CheckBox("Use R", false)); // Default false
             }
@@ -91,10 +86,6 @@ namespace LuxMaster
             public static bool UseQ
             {
                 get { return Menu["harassUseQ"].Cast<CheckBox>().CurrentValue; }
-            }
-            public static bool UseW
-            {
-                get { return Menu["harassUseW"].Cast<CheckBox>().CurrentValue; }
             }
             public static bool UseE
             {
@@ -115,7 +106,6 @@ namespace LuxMaster
                 // way that I used in the combo class
                 Menu = Config.Menu.AddSubMenu("Harass");
                 Menu.Add("harassUseQ", new CheckBox("Use Q"));
-                Menu.Add("harassUseW", new CheckBox("Use W"));
                 Menu.Add("harassUseE", new CheckBox("Use E"));
                 Menu.Add("harassUseR", new CheckBox("Use R", false)); // Default false
 
@@ -136,10 +126,6 @@ namespace LuxMaster
             {
                 get { return Menu["laneclearUseQ"].Cast<CheckBox>().CurrentValue; }
             }
-            public static bool UseW
-            {
-                get { return Menu["laneclearUseW"].Cast<CheckBox>().CurrentValue; }
-            }
             public static bool UseE
             {
                 get { return Menu["laneclearUseE"].Cast<CheckBox>().CurrentValue; }
@@ -159,7 +145,6 @@ namespace LuxMaster
                 // way that I used in the combo class
                 Menu = Config.Menu.AddSubMenu("Lane Clear");
                 Menu.Add("laneclearUseQ", new CheckBox("Use Q"));
-                Menu.Add("laneclearUseW", new CheckBox("Use W"));
                 Menu.Add("laneclearUseE", new CheckBox("Use E"));
                 Menu.Add("laneclearUseR", new CheckBox("Use R", false)); // Default false
 
@@ -180,10 +165,6 @@ namespace LuxMaster
             {
                 get { return Menu["jungleclearUseQ"].Cast<CheckBox>().CurrentValue; }
             }
-            public static bool UseW
-            {
-                get { return Menu["jungleclearUseW"].Cast<CheckBox>().CurrentValue; }
-            }
             public static bool UseE
             {
                 get { return Menu["jungleclearUseE"].Cast<CheckBox>().CurrentValue; }
@@ -201,9 +182,8 @@ namespace LuxMaster
             {
                 // Here is another option on how to use the menu, but I prefer the
                 // way that I used in the combo class
-                Menu = Config.Menu.AddSubMenu("jungleclear");
+                Menu = Config.Menu.AddSubMenu("Jungle Clear");
                 Menu.Add("jungleclearUseQ", new CheckBox("Use Q"));
-                Menu.Add("jungleclearUseW", new CheckBox("Use W"));
                 Menu.Add("jungleclearUseE", new CheckBox("Use E"));
                 Menu.Add("jungleclearUseR", new CheckBox("Use R", false)); // Default false
 
