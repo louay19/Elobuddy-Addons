@@ -39,7 +39,8 @@ namespace GalioMaster
         {
             if( Config.Misc.UseW
                 && sender.IsEnemy 
-                && sender.IsValidTarget(2000) )
+                && sender.IsValidTarget(2000) 
+                && args.End.IsInRange(Player.Instance, 200))
             {
                 SpellManager.W.Cast(Player.Instance);
             }
