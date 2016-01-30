@@ -12,6 +12,7 @@ namespace LuxMaster
         // Change this line to the champion you want to make the addon for,
         // watch out for the case being correct!
         public const string ChampName = "Lux";
+        public static GameObject luxEObject;
 
         public static void Main(string[] args)
         {
@@ -36,20 +37,30 @@ namespace LuxMaster
 
             // Listen to events we need
             Drawing.OnDraw += OnDraw;
-            Obj_AI_Base.OnCreate += Obj_AI_Base_OnCreate;
+            GameObject.OnCreate += Obj_AI_Base_OnCreate;
+           // GameObject.OnDelete += Obj_AI_Base_OnDelete;
         }
+
+       // private static void Obj_AI_Base_OnDelete(GameObject sender, EventArgs args)
+       // {
+       //     if (sender.Name == "Lux_Base_E_mis.troy")
+       //     {
+       //         luxEObject = null;
+       //     }
+       //     throw new NotImplementedException();
+       // }
 
         private static void Obj_AI_Base_OnCreate(GameObject sender, EventArgs args)
         {
-            if (sender.Type == GameObjectType.MissileClient)
+            if (sender.Name == "Lux_Base_E_mis.troy")
             {
-                Chat.Print("Name Object Missile: " + sender.Name);
+                luxEObject = sender;
             }
             throw new NotImplementedException();
         }
 
         private static void OnDraw(EventArgs args)
-        {
+        {        
             // Draw range circles of our spells
             //Circle.Draw(Color.Red, SpellManager.Q.Range, Player.Instance.Position);
             // TODO: Uncomment if you want those enabled aswell, but remember to enable them

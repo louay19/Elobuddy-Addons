@@ -20,7 +20,7 @@ namespace LuxMaster
 
             W = new Spell.Skillshot(SpellSlot.W,1075,EloBuddy.SDK.Enumerations.SkillShotType.Linear,250,1200,100);
             E = new Spell.Skillshot(SpellSlot.E,1100,EloBuddy.SDK.Enumerations.SkillShotType.Circular,250,1200,175);
-            R = new Spell.Skillshot(SpellSlot.R,3340,EloBuddy.SDK.Enumerations.SkillShotType.Linear,600,int.MaxValue,120);
+            R = new Spell.Skillshot(SpellSlot.R,3340,EloBuddy.SDK.Enumerations.SkillShotType.Linear,600,int.MaxValue,80);
 
             Q.AllowedCollisionCount = 2;
             W.AllowedCollisionCount = int.MaxValue;

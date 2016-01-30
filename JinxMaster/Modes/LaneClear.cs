@@ -39,9 +39,9 @@ namespace JinxMaster.Modes
 
         private bool CheckFarmQ(Obj_AI_Base target)
         {
-            var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, target.Position, 185)
-                .Where(l => l.Health < Player.Instance.GetAutoAttackDamage(l) * 1.1f);
-            return minions.Count() > Config.Modes.Misc.NumberQKill;         
+            var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, target.Position, 185, true)
+                .Where(o => o.Health < Extensions.GetDamageToTarget(SpellSlot.Q, o));
+            return minions.Count() > Config.Modes.Misc.NumberQKill;
         }
     }
 }

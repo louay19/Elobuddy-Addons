@@ -14,6 +14,14 @@ namespace LuxMaster.Modes
 
         public override void Execute()
         {
+            var jungleminion = Orbwalker.LastTarget;
+            if (jungleminion == null || !jungleminion.IsValid) return;
+            if (Settings.UseQ && Q.IsReady() && jungleminion.IsValidTarget(Q.Range))
+                Q.Cast(jungleminion.Position);
+            if (Settings.UseE && E.IsReady() && jungleminion.IsValidTarget(E.Range))
+                E.Cast(jungleminion.Position);
+            if (Settings.UseR && R.IsReady() && jungleminion.IsValidTarget(R.Range))
+                R.Cast(jungleminion.Position);
             // TODO: Add jungleclear logic here
         }
     }
