@@ -105,7 +105,7 @@ namespace LuxMaster
                 // Here is another option on how to use the menu, but I prefer the
                 // way that I used in the combo class
                 Menu = Config.Menu.AddSubMenu("Harass");
-                Menu.Add("harassUseQ", new CheckBox("Use Q"));
+                Menu.Add("harassUseQ", new CheckBox("Use Q",false));
                 Menu.Add("harassUseE", new CheckBox("Use E"));
                 Menu.Add("harassUseR", new CheckBox("Use R", false)); // Default false
 

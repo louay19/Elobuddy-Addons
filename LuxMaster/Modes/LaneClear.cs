@@ -15,6 +15,7 @@ namespace LuxMaster.Modes
 
         public override void Execute()
         {
+            if (MyHero.ManaPercent < Settings.Mana) return;
             if(Settings.UseE && E.IsReady())
             {
                 var minion = Extensions.SelectLaneMinion(E.Range, SpellSlot.E);

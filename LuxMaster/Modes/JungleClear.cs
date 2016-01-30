@@ -15,6 +15,7 @@ namespace LuxMaster.Modes
 
         public override void Execute()
         {
+            if (MyHero.ManaPercent < Settings.Mana) return;
             var jungleminion = EntityManager.MinionsAndMonsters.GetJungleMonsters(MyHero.Position, 1100).First();
             if (jungleminion == null || !jungleminion.IsValid) return;
             if (Settings.UseQ && Q.IsReady() && jungleminion.IsValidTarget(Q.Range))

@@ -16,6 +16,7 @@ namespace LuxMaster.Modes
 
         public override void Execute()
         {
+            if (MyHero.ManaPercent < Settings.Mana) return;
             var target = TargetSelector.GetTarget(3343, DamageType.Magical);
             if (target == null || !target.IsValid) return;
             // TODO: Add combo logic here
