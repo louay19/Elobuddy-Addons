@@ -19,12 +19,12 @@ namespace LuxMaster.Modes
             var target = TargetSelector.GetTarget(3340, DamageType.Magical);
             if (target == null || !target.IsValid) return;
             // TODO: Add combo logic here
-            // See how I used the Settings.UseQ here, this is why I love my way of using
+            // See how I used the Settings.UseE here, this is why I love my way of using
             // the menu in the Config class!
             if (Settings.UseQ && Q.IsReady() && target.IsValidTarget(Q.Range))
             {
                 var Pred = Q.GetPrediction(target);
-                if (Pred.HitChance > EloBuddy.SDK.Enumerations.HitChance.Collision)                   
+                if (Pred.HitChance > EloBuddy.SDK.Enumerations.HitChance.Collision)
                     Q.Cast(Pred.CastPosition);
             }
 
@@ -35,11 +35,11 @@ namespace LuxMaster.Modes
                     E.Cast(Pred.CastPosition);
             }
 
-            if (Settings.UseR && R.IsReady() && target.IsValidTarget(R.Range) 
+            if (Settings.UseR && R.IsReady() && target.IsValidTarget(R.Range)
                 && target.Health < Extensions.GetDamageToTarget(SpellSlot.R, target))
             {
                 var Pred = R.GetPrediction(target);
-                if (Pred.HitChance > EloBuddy.SDK.Enumerations.HitChance.Medium)
+                if (Pred.HitChance > EloBuddy.SDK.Enumerations.HitChance.Collision)
                     R.Cast(Pred.CastPosition);
             }
         }

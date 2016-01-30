@@ -38,15 +38,27 @@ namespace LuxMaster
             // Listen to events we need
             Drawing.OnDraw += OnDraw;
             GameObject.OnCreate += Obj_AI_Base_OnCreate;
-            Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
             GameObject.OnDelete += Obj_AI_Base_OnDelete;
+            Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
+            AttackableUnit.OnDamage += AIHeroClient_OnDamage;
+        }
+
+        private static void AIHeroClient_OnDamage(AttackableUnit sender, AttackableUnitDamageEventArgs args)
+        {
+            if (sender.IsAlly
+               && sender.Type == GameObjectType.AIHeroClient
+               && sender.IsValidTarget(SpellManager.W.Range)
+               && sender.HealthPercent < 60
+               && args.Damage > 50)
+                SpellManager.W.Cast(sender.Position);
         }
 
         private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
         {
-            if (sender.IsEnemy && sender.IsValidTarget(3340) && e.End.Distance(Player.Instance.Position) < 500)
+            if (sender.IsEnemy && sender.IsValidTarget(3340) && e.End.Distance(Player.Instance.Position) < 1000)
             {
-
+                if (SpellManager.Q.IsReady()) SpellManager.Q.Cast(sender);
+                if (SpellManager.E.IsReady()) SpellManager.E.Cast(sender);
             }
         }
 
@@ -63,6 +75,7 @@ namespace LuxMaster
             if (sender.Name == "Lux_Base_E_mis.troy")
             {
                 luxEObject = sender;
+                Chat.Print("Type object = " + sender.Type);
             }
         }
 

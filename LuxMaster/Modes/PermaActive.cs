@@ -28,7 +28,7 @@ namespace LuxMaster.Modes
             var enemyheroes = EntityManager.Heroes.Enemies;        
             foreach (var h in enemyheroes)
             {
-                if (h.Distance(Program.luxEObject.Position) <= 350) E.Cast(h.Position);
+                if (h.Distance(Program.luxEObject.Position) <= 325) E.Cast(h.Position);
             }
         }
     }
