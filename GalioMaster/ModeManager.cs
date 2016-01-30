@@ -41,7 +41,7 @@ namespace GalioMaster
                 && sender.IsEnemy 
                 && sender.IsValidTarget(2000) )
             {
-                SpellManager.W.Cast();
+                SpellManager.W.Cast(Player.Instance);
             }
             throw new NotImplementedException();
         }

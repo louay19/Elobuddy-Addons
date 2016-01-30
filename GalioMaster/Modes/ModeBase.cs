@@ -17,7 +17,7 @@ namespace GalioMaster.Modes
         {
             get { return SpellManager.Q; }
         }
-        protected Spell.Active W
+        protected Spell.Targeted W
         {
             get { return SpellManager.W; }
         }

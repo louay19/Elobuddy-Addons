@@ -24,13 +24,13 @@ namespace GalioMaster.Modes
             if (Settings.UseQ && Q.IsReady() && target.IsValidTarget(Q.Range))
             {
                 var Pred = Q.GetPrediction(target);
-                if (Pred.HitChancePercent > Config.Misc.Hitchance) Q.Cast(target);
+                if (Pred.HitChance == EloBuddy.SDK.Enumerations.HitChance.AveragePoint) Q.Cast(target);
             }
 
             if(Settings.UseE && E.IsReady() && target.IsValidTarget(E.Range))
             {
                 var Pred = E.GetPrediction(target);
-                if (Pred.HitChancePercent > Config.Misc.Hitchance) E.Cast(target);
+                if (Pred.HitChance == EloBuddy.SDK.Enumerations.HitChance.AveragePoint) E.Cast(target);
             }
         }
     }

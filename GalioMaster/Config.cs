@@ -25,10 +25,10 @@ namespace GalioMaster
 
             // Initialize the modes
             Misc.Initialize();
-
             Combo.Initialize();
-
             Harass.Initialize();
+            LaneClear.Initialize();
+            JungleClear.Initialize();
         }
 
         public static void Initialize()
@@ -184,12 +184,7 @@ namespace GalioMaster
             public static bool UseR
             {
                 get { return Menu["defensiveUseR"].Cast<CheckBox>().CurrentValue; }
-            }
-
-            public static int Hitchance
-            {
-                get { return Menu["hitchance"].Cast<Slider>().CurrentValue; }
-            }
+            }        
 
             static Misc()
             {
@@ -197,7 +192,7 @@ namespace GalioMaster
                 Menu = Config.Menu.AddSubMenu("Misc");
                 Menu.Add("defensiveUseW", new CheckBox("Use W when any enemy spell cast on me"));
                 Menu.Add("defensiveUseR", new CheckBox("Use R when any enemy spell cast on me"));
-                Menu.Add("hitchance", new Slider("Hit chance at {0}%", 80, 0, 100));
+               
             }
 
             public static void Initialize()
