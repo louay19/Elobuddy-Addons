@@ -23,16 +23,12 @@ namespace LuxMaster.Modes
             // the menu in the Config class!
             if (Settings.UseQ && Q.IsReady() && target.IsValidTarget(Q.Range))
             {
-                var Pred = Q.GetPrediction(target);
-                if (Pred.HitChance > EloBuddy.SDK.Enumerations.HitChance.Collision)
-                    Q.Cast(Pred.CastPosition);
+                Q.Cast(target);
             }
 
             if (Settings.UseE && E.IsReady() && target.IsValidTarget(E.Range) && E.Name == "LuxLightStrikeKugel")
             {
-                var Pred = E.GetPrediction(target);
-                if (Pred.HitChance > EloBuddy.SDK.Enumerations.HitChance.Collision)
-                    E.Cast(Pred.CastPosition);
+                E.Cast(target);
             }
 
             if (Settings.UseR && R.IsReady() && target.IsValidTarget(R.Range)
