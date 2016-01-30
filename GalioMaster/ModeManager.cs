@@ -38,9 +38,8 @@ namespace GalioMaster
         private static void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
             if( Config.Misc.UseW
-                &&sender.IsEnemy 
-                && sender.IsValidTarget(2000) 
-                && args.End.Distance(Player.Instance.Position) < 150)
+                && sender.IsEnemy 
+                && sender.IsValidTarget(2000) )
             {
                 SpellManager.W.Cast();
             }
