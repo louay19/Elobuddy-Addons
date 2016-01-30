@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChogathMaster", "ChogathMas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalioMaster", "GalioMaster\GalioMaster.csproj", "{FFEC9417-846F-4272-89BB-689D65A45057}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuxMaster", "LuxMaster\LuxMaster.csproj", "{BDE79BA7-3F15-4049-9C37-EDE21628D087}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{FFEC9417-846F-4272-89BB-689D65A45057}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFEC9417-846F-4272-89BB-689D65A45057}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFEC9417-846F-4272-89BB-689D65A45057}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDE79BA7-3F15-4049-9C37-EDE21628D087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDE79BA7-3F15-4049-9C37-EDE21628D087}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDE79BA7-3F15-4049-9C37-EDE21628D087}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDE79BA7-3F15-4049-9C37-EDE21628D087}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
