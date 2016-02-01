@@ -40,19 +40,16 @@ namespace LuxMaster
             GameObject.OnCreate += Obj_AI_Base_OnCreate;
             GameObject.OnDelete += Obj_AI_Base_OnDelete;
             Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
-            AttackableUnit.OnDamage += AIHeroClient_OnDamage;
+            Spellbook.OnCastSpell += Spellbook_OnCastSpell;
         }
 
-        private static void AIHeroClient_OnDamage(AttackableUnit sender, AttackableUnitDamageEventArgs args)
+        private static void Spellbook_OnCastSpell(Spellbook sender, SpellbookCastSpellEventArgs args)
         {
-            if (sender.IsAlly
-               && sender.Type == GameObjectType.AIHeroClient
-               && sender.IsValidTarget(SpellManager.W.Range)
-               && sender.HealthPercent < 60
-               && args.Damage > 50)
-                SpellManager.W.Cast(sender.Position);
+            if (!sender.Owner.IsEnemy) return;
+            if (args.Target == Player.Instance) SpellManager.W.Cast(Player.Instance.Position);
         }
 
+        
         private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
         {
             if (sender.IsEnemy && sender.IsValidTarget(3340) && e.End.Distance(Player.Instance.Position) < 1000)

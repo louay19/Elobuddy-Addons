@@ -25,21 +25,19 @@ namespace LuxMaster.Modes
             if (Settings.UseQ && Q.IsReady() && target.IsValidTarget(Q.Range))
             {
               
-                    Q.Cast(target);
+                    Q.Cast(target.ServerPosition);
             }
 
             if (Settings.UseE && E.IsReady() && target.IsValidTarget(E.Range) && E.Name == "LuxLightStrikeKugel")
             {
                 
-                    E.Cast(target);
+                    E.Cast(target.ServerPosition);
             }
 
             if (Settings.UseR && R.IsReady() && target.IsValidTarget(R.Range)
                 && target.Health < Extensions.GetDamageToTarget(SpellSlot.R, target))
             {
-                var Pred = R.GetPrediction(target);
-                if (Pred.HitChance > EloBuddy.SDK.Enumerations.HitChance.Collision)
-                    R.Cast(Pred.CastPosition);
+                R.Cast(target.ServerPosition);
             }
 
         }
