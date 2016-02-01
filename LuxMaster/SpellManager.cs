@@ -18,8 +18,8 @@ namespace LuxMaster
             // Initialize spells
             Q = new Spell.Skillshot(SpellSlot.Q,1175,EloBuddy.SDK.Enumerations.SkillShotType.Linear,250,1200,60);
 
-            W = new Spell.Skillshot(SpellSlot.W,1075,EloBuddy.SDK.Enumerations.SkillShotType.Linear,250,1700,100);
-            E = new Spell.Skillshot(SpellSlot.E,1100,EloBuddy.SDK.Enumerations.SkillShotType.Circular,250,1700,175);
+            W = new Spell.Skillshot(SpellSlot.W,1075,EloBuddy.SDK.Enumerations.SkillShotType.Linear,250,1700,150);
+            E = new Spell.Skillshot(SpellSlot.E,1100,EloBuddy.SDK.Enumerations.SkillShotType.Circular,250,1700,150);
             R = new Spell.Skillshot(SpellSlot.R,3340,EloBuddy.SDK.Enumerations.SkillShotType.Linear,600,int.MaxValue,80);
 
             Q.AllowedCollisionCount = 1;
