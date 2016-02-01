@@ -5,9 +5,7 @@ using System.Linq;
 namespace LuxMaster.Modes
 {
     public sealed class PermaActive : ModeBase
-    {
-        Obj_AI_Base Baron, Dragon;
-        
+    {     
         public override bool ShouldBeExecuted()
         {
             // Since this is permaactive mode, always execute the loop
@@ -16,8 +14,6 @@ namespace LuxMaster.Modes
 
         public override void Execute()
         {
-            // Baron = EntityManager.MinionsAndMonsters.Monsters.Where(o => o.Name == "SRU_Baron").First();
-            // Dragon = EntityManager.MinionsAndMonsters.Monsters.Where(o => o.Name == "SRU_Dragon").First();    
             AutouseE();
 
         }

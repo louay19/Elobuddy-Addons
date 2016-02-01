@@ -26,7 +26,6 @@ namespace LuxMaster
             W.AllowedCollisionCount = int.MaxValue;
             R.AllowedCollisionCount = int.MaxValue;
         }
-
         public static void Initialize()
         {
             // Let the static initializer do the job, this way we avoid multiple init calls aswell

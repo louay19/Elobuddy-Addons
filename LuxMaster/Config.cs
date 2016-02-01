@@ -21,7 +21,7 @@ namespace LuxMaster
             Menu = MainMenu.AddMenu(MenuName, MenuName.ToLower());
             Menu.AddGroupLabel("Welcome to this Sivuu Addons Family!");
             Menu.AddLabel("Thank for Addon Template by Hellsing");
-            Menu.AddLabel("Good luck and have fun!");
+            Menu.AddLabel("Lux Master 1.0");
 
             // Initialize the modes
             Misc.Initialize();

@@ -42,25 +42,28 @@ namespace LuxMaster
             GameObject.OnDelete += Obj_AI_Base_OnDelete;
             Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
             Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
+
         }
 
         private static void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsEnemy && sender.IsValidTarget(1700) && args.End.Distance(Player.Instance.Position) < 1000f)
+            if (sender.IsEnemy && sender.IsValidTarget(2000) )
             {
-                var nearally = EntityManager.Heroes.Allies.Where(a => a.Distance(Player.Instance.Position) < 1050f).First();
-                if (nearally != null)
+                if (Prediction.Position.Collision.CircularMissileCollision(Player.Instance, args.Start.To2D(), args.End.To2D(), 1700, 150, 250))
                 {
-                    SpellManager.W.Cast(nearally.ServerPosition);
-                }
-                else SpellManager.W.Cast(ObjectManager.Player.ServerPosition);
-
+                    var nearally = EntityManager.Heroes.Allies.Where(a => a.Distance(Player.Instance.Position) < 1050f).First();
+                    if (nearally != null)
+                    {
+                        SpellManager.W.Cast(nearally.ServerPosition);
+                    }
+                    else SpellManager.W.Cast(ObjectManager.Player.ServerPosition);
+                }                      
             }                
         }
 
         private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
         {
-            if (sender.IsEnemy && sender.IsValidTarget(1100))
+            if (sender.IsEnemy && sender.IsValidTarget(1560))
             {
                 if (SpellManager.Q.IsReady()) SpellManager.Q.Cast(sender);
                 if (SpellManager.E.IsReady()) SpellManager.E.Cast(sender);
