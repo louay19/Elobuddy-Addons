@@ -89,7 +89,7 @@ namespace LuxMaster
         private static void OnDraw(EventArgs args)
         {        
             // Draw range circles of our spells
-            //Circle.Draw(Color.Red, SpellManager.Q.Range, Player.Instance.Position);
+            Circle.Draw(Color.Red, SpellManager.Q.Range, Player.Instance.Position);
             // TODO: Uncomment if you want those enabled aswell, but remember to enable them
             // TODO: in the SpellManager aswell, otherwise you will get a NullReferenceException
             //Circle.Draw(Color.Red, SpellManager.W.Range, Player.Instance.Position);
