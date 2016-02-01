@@ -42,7 +42,17 @@ namespace LuxMaster
             GameObject.OnDelete += Obj_AI_Base_OnDelete;
             Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
             Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
+            Obj_AI_Base.OnDamage += Obj_AI_Base_OnDamage;
 
+        }
+
+        private static void Obj_AI_Base_OnDamage(AttackableUnit sender, AttackableUnitDamageEventArgs args)
+        {
+            if(sender.IsAlly && sender.IsValidTarget(1100) && args.Damage > 80)
+            {
+             
+                    SpellManager.W.Cast(sender.Position);
+            }
         }
 
         private static void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
@@ -89,7 +99,7 @@ namespace LuxMaster
         private static void OnDraw(EventArgs args)
         {        
             // Draw range circles of our spells
-            Circle.Draw(Color.Red, SpellManager.Q.Range, Player.Instance.Position);
+            //Circle.Draw(Color.Red, SpellManager.Q.Range, Player.Instance.Position);
             // TODO: Uncomment if you want those enabled aswell, but remember to enable them
             // TODO: in the SpellManager aswell, otherwise you will get a NullReferenceException
             //Circle.Draw(Color.Red, SpellManager.W.Range, Player.Instance.Position);
