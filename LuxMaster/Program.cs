@@ -4,6 +4,7 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
 using EloBuddy.SDK;
+using System.Linq;
 
 namespace LuxMaster
 {
@@ -40,19 +41,26 @@ namespace LuxMaster
             GameObject.OnCreate += Obj_AI_Base_OnCreate;
             GameObject.OnDelete += Obj_AI_Base_OnDelete;
             Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
-            Spellbook.OnCastSpell += Spellbook_OnCastSpell;
+            Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
         }
 
-        private static void Spellbook_OnCastSpell(Spellbook sender, SpellbookCastSpellEventArgs args)
+        private static void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!sender.Owner.IsEnemy) return;
-            if (args.Target == Player.Instance) SpellManager.W.Cast(Player.Instance.Position);
+            if (sender.IsEnemy && sender.IsValidTarget(1700) && args.End.Distance(Player.Instance.Position) < 1000f)
+            {
+                var nearally = EntityManager.Heroes.Allies.Where(a => a.Distance(Player.Instance.Position) < 1050f).First();
+                if (nearally != null)
+                {
+                    SpellManager.W.Cast(nearally.ServerPosition);
+                }
+                else SpellManager.W.Cast(ObjectManager.Player.ServerPosition);
+
+            }                
         }
 
-        
         private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
         {
-            if (sender.IsEnemy && sender.IsValidTarget(3340) && e.End.Distance(Player.Instance.Position) < 1000)
+            if (sender.IsEnemy && sender.IsValidTarget(1100))
             {
                 if (SpellManager.Q.IsReady()) SpellManager.Q.Cast(sender);
                 if (SpellManager.E.IsReady()) SpellManager.E.Cast(sender);
@@ -72,7 +80,6 @@ namespace LuxMaster
             if (sender.Name == "Lux_Base_E_mis.troy")
             {
                 luxEObject = sender;
-                Chat.Print("Type object = " + sender.Type);
             }
         }
 
