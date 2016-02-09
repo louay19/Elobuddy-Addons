@@ -15,22 +15,17 @@ namespace LuxMaster.Modes
         public override void Execute()
         {
             AutouseE();
+            AutoProtectW();
+            AutoKillSteal();
         }
 
         public void AutouseE()
         {
             if (Program.luxEObject == null) return;
-            var enemyheroes = EntityManager.Heroes.Enemies;
-            var enemyminions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Program.luxEObject.Position, 350);
-            bool check = false;    
-            foreach (var h in enemyheroes)
-            {
-                if (h.Distance(Program.luxEObject.Position) < 350 + h.BoundingRadius)
-                {
-                    if(E.Cast(Program.luxEObject.Position)) check = true;
-                }
-            }
-            if (check == false && enemyminions.Count() >= 4) SpellManager.E.Cast(Program.luxEObject.Position);
+            var enemyheroes = EntityManager.Heroes.Enemies.Where(h => h.Distance(Program.luxEObject.Position) <= Program.luxEObject.BoundingRadius + 150) ;
+            var enemyminions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Program.luxEObject.Position, Program.luxEObject.BoundingRadius+150);
+            if (enemyheroes.Any()) E2.Cast();
+            if (enemyminions.Count() >= 4) E2.Cast();
         }
 
         public void AutoProtectW()
@@ -44,6 +39,15 @@ namespace LuxMaster.Modes
                 SpellManager.W.Cast(allyheroes.Position);
             }
 
+        }
+
+        public void AutoKillSteal()
+        {
+            var enemyheroes = EntityManager.Heroes.Enemies.Where(e => e.Distance(Player.Instance.Position) < SpellManager.R.Range && e.Health < Extensions.GetDamageToTarget(SpellSlot.R, e));
+            if (enemyheroes.Any())
+            {
+                SpellManager.R.Cast(SpellManager.R.GetPrediction(enemyheroes.First()).CastPosition);
+            }
         }
     }
 }

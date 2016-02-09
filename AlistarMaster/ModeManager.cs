@@ -39,7 +39,7 @@ namespace AlistarMaster
         }
 
         private static void OnTick(EventArgs args)
-        {
+        {   if (Player.Instance.HasBuff("recall")) return;
             // Execute all modes
             Modes.ForEach(mode =>
             {

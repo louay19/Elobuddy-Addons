@@ -25,6 +25,10 @@ namespace LuxMaster.Modes
         {
             get { return SpellManager.E; }
         }
+        protected Spell.Active E2
+        {
+            get { return SpellManager.E2; }
+        }
         protected Spell.Skillshot R
         {
             get { return SpellManager.R; }

@@ -42,36 +42,30 @@ namespace LuxMaster
             GameObject.OnDelete += Obj_AI_Base_OnDelete;
             Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
             Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
-            Obj_AI_Base.OnDamage += Obj_AI_Base_OnDamage;
+            AttackableUnit.OnDamage += Obj_AI_Base_OnDamage;
         }
 
         private static void Obj_AI_Base_OnDamage(AttackableUnit sender, AttackableUnitDamageEventArgs args)
         {
-            if (args.Target.Team == Player.Instance.Team
-                //&& args.Target.Type == GameObjectType.AIHeroClient 
-                && args.Target.IsValidTarget(1100) 
+            if (args.Target == Player.Instance
                 && args.Damage > 35)
             {
-                
-                Chat.Print("On Damage " + args.Target.Name  + " by " + args.Source.Name );
                 SpellManager.W.Cast(args.Target.Position);
             }
         }
 
         private static void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsEnemy && sender.IsValidTarget(2000) )
-            {       
-                if (Prediction.Position.Collision.CircularMissileCollision(Player.Instance, args.Start.To2D(), args.End.To2D(), 1700, 150, 250))
+            if (sender.IsEnemy && sender.IsValidTarget(3000) )
+            {
+                var ally = EntityManager.Heroes.Allies.Where(a => a.Distance(Player.Instance.Position) < SpellManager.W.Range);
+                foreach(var a in ally)
                 {
-                    Chat.Print("On Spell Cast " + sender.Name);
-                    var nearally = EntityManager.Heroes.Allies.Where(a => a.Distance(Player.Instance.Position) < 1050f).First();
-                    if (nearally != null)
+                    if (a.IsValid && Prediction.Position.Collision.CircularMissileCollision(a, args.Start.To2D(), args.End.To2D(), int.MaxValue, 150, 250))
                     {
-                        SpellManager.W.Cast(nearally.ServerPosition);
+                        SpellManager.W.Cast(SpellManager.W.GetPrediction(a).CastPosition);
                     }
-                    else SpellManager.W.Cast(ObjectManager.Player.ServerPosition);
-                }                      
+                }                 
             }                
         }
 
@@ -86,7 +80,7 @@ namespace LuxMaster
 
         private static void Obj_AI_Base_OnDelete(GameObject sender, EventArgs args)
          {
-             if (sender.Name == "Lux_Base_E_mis.troy")
+             if (sender.Name == "Lux_Base_E_mis.troy" || sender.Name == "Lux_Base_E_tar_nova.troy")
              {
                  luxEObject = null;
              }
@@ -94,7 +88,7 @@ namespace LuxMaster
 
         private static void Obj_AI_Base_OnCreate(GameObject sender, EventArgs args)
         {
-            if (sender.Name == "Lux_Base_E_mis.troy")
+            if (sender.Name == "Lux_Base_E_mis.troy" || sender.Name == "Lux_Base_E_tar_nova.troy")
             {
                 luxEObject = sender;
             }
@@ -103,7 +97,8 @@ namespace LuxMaster
         private static void OnDraw(EventArgs args)
         {        
             // Draw range circles of our spells
-            //Circle.Draw(Color.Red, SpellManager.Q.Range, Player.Instance.Position);
+            if (luxEObject != null)
+            Circle.Draw(Color.Red, luxEObject.BoundingRadius+150, luxEObject.Position);
             // TODO: Uncomment if you want those enabled aswell, but remember to enable them
             // TODO: in the SpellManager aswell, otherwise you will get a NullReferenceException
             //Circle.Draw(Color.Red, SpellManager.W.Range, Player.Instance.Position);
