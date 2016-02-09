@@ -34,8 +34,7 @@ namespace LuxMaster.Modes
                     E.Cast(target.ServerPosition);
             }
 
-            if (Settings.UseR && R.IsReady() && target.IsValidTarget(R.Range)
-                && target.Health < Extensions.GetDamageToTarget(SpellSlot.R, target))
+            if (Settings.UseR && R.IsReady() && target.IsValidTarget(R.Range))
             {
                 R.Cast(target.ServerPosition);
             }

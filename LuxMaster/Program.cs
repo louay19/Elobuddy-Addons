@@ -39,7 +39,6 @@ namespace LuxMaster
             // Listen to events we need
             Drawing.OnDraw += OnDraw;
             GameObject.OnCreate += Obj_AI_Base_OnCreate;
-            GameObject.OnDelete += Obj_AI_Base_OnDelete;
             Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
             Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
             AttackableUnit.OnDamage += Obj_AI_Base_OnDamage;
@@ -78,17 +77,11 @@ namespace LuxMaster
             }
         }
 
-        private static void Obj_AI_Base_OnDelete(GameObject sender, EventArgs args)
-         {
-             if (sender.Name == "Lux_Base_E_mis.troy" || sender.Name == "Lux_Base_E_tar_nova.troy")
-             {
-                 luxEObject = null;
-             }
-         }
-
         private static void Obj_AI_Base_OnCreate(GameObject sender, EventArgs args)
         {
-            if (sender.Name == "Lux_Base_E_mis.troy" || sender.Name == "Lux_Base_E_tar_nova.troy")
+            if (!(sender is MissileClient)) return;
+            var missile = sender as MissileClient;
+            if (missile.Name.Contains("Lux_Base_E_mis.troy") || missile.Name.Contains("Lux_Base_E_tar_nova.troy") )
             {
                 luxEObject = sender;
             }
@@ -97,8 +90,8 @@ namespace LuxMaster
         private static void OnDraw(EventArgs args)
         {        
             // Draw range circles of our spells
-            if (luxEObject != null)
-            Circle.Draw(Color.Red, luxEObject.BoundingRadius+150, luxEObject.Position);
+            //if (luxEObject != null)
+            //Circle.Draw(Color.Red, luxEObject.BoundingRadius+150, luxEObject.Position);
             // TODO: Uncomment if you want those enabled aswell, but remember to enable them
             // TODO: in the SpellManager aswell, otherwise you will get a NullReferenceException
             //Circle.Draw(Color.Red, SpellManager.W.Range, Player.Instance.Position);

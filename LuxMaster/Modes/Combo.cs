@@ -33,8 +33,7 @@ namespace LuxMaster.Modes
                 E.Cast(E.GetPrediction(target).CastPosition);
             }
 
-            if (Settings.UseR && R.IsReady() && target.IsValidTarget(R.Range)
-                && target.Health < Extensions.GetDamageToTarget(SpellSlot.R, target))
+            if (Settings.UseR && R.IsReady() && target.IsValidTarget(R.Range))
             {
                 if (R.GetPrediction(target).HitChance >= EloBuddy.SDK.Enumerations.HitChance.High)
                     R.Cast(R.GetPrediction(target).CastPosition);

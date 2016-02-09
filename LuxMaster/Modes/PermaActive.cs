@@ -17,6 +17,10 @@ namespace LuxMaster.Modes
             AutouseE();
             AutoProtectW();
             AutoKillSteal();
+            if(Program.luxEObject != null && E.Name.Contains("LuxLightStrikeKugel"))
+            {
+                Program.luxEObject = null;
+            }
         }
 
         public void AutouseE()
@@ -43,7 +47,9 @@ namespace LuxMaster.Modes
 
         public void AutoKillSteal()
         {
-            var enemyheroes = EntityManager.Heroes.Enemies.Where(e => e.Distance(Player.Instance.Position) < SpellManager.R.Range && e.Health < Extensions.GetDamageToTarget(SpellSlot.R, e));
+            var enemyheroes = EntityManager.Heroes.Enemies.Where(e => e.Distance(Player.Instance.Position) < SpellManager.R.Range 
+            && Prediction.Health.GetPrediction(e,1000) < (Extensions.GetDamageToTarget(SpellSlot.R, e))
+            && e.IsValid);
             if (enemyheroes.Any())
             {
                 SpellManager.R.Cast(SpellManager.R.GetPrediction(enemyheroes.First()).CastPosition);
