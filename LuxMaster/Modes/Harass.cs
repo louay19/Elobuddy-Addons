@@ -25,18 +25,18 @@ namespace LuxMaster.Modes
             if (Settings.UseQ && Q.IsReady() && target.IsValidTarget(Q.Range))
             {
               
-                    Q.Cast(target.ServerPosition);
+                 Q.Cast(target);
             }
 
             if (Settings.UseE && E.IsReady() && target.IsValidTarget(E.Range) && E.Name == "LuxLightStrikeKugel")
             {
                 
-                    E.Cast(target.ServerPosition);
+                E.Cast(target);
             }
 
             if (Settings.UseR && R.IsReady() && target.IsValidTarget(R.Range))
             {
-                R.Cast(target.ServerPosition);
+                R.Cast(target);
             }
 
         }

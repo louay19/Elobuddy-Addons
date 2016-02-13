@@ -38,21 +38,18 @@ namespace LuxMaster.Modes
                 .Where(a => Player.Instance.Distance(a) < 1100 
                             && a.HealthPercent < 50
                             && a.Position.CountEnemiesInRange(1100) > 0).First();
-            if (allyheroes.IsValidTarget(SpellManager.W.Range))
-            {
-                SpellManager.W.Cast(allyheroes.Position);
-            }
 
         }
 
         public void AutoKillSteal()
         {
             var enemyheroes = EntityManager.Heroes.Enemies.Where(e => e.Distance(Player.Instance.Position) < SpellManager.R.Range 
-            && Prediction.Health.GetPrediction(e,1000) < (Extensions.GetDamageToTarget(SpellSlot.R, e))
-            && e.IsValid);
+            && (e.Health * 1.1f) < Extensions.GetDamageToTarget(SpellSlot.R, e)
+            && e.IsValidTarget(3300));
+            
             if (enemyheroes.Any())
-            {
-                SpellManager.R.Cast(SpellManager.R.GetPrediction(enemyheroes.First()).CastPosition);
+            {             
+                SpellManager.R.Cast(enemyheroes.First());
             }
         }
     }

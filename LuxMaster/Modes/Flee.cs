@@ -12,6 +12,11 @@ namespace LuxMaster.Modes
 
         public override void Execute()
         {
+            var target = TargetSelector.GetTarget(1200, EloBuddy.DamageType.Magical);
+            if (target == null) return;
+            if (Q.IsReady()) Q.Cast(target);
+            if (W.IsReady()) W.Cast(target);
+            if (E.IsReady()) E.Cast(target);
             // TODO: Add flee logic here
         }
     }

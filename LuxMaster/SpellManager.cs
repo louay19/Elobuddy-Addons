@@ -26,6 +26,7 @@ namespace LuxMaster
 
             Q.AllowedCollisionCount = 1;
             W.AllowedCollisionCount = int.MaxValue;
+            E.AllowedCollisionCount = int.MaxValue;
             R.AllowedCollisionCount = int.MaxValue;
         }
         public static void Initialize()

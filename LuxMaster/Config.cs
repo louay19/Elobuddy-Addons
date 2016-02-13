@@ -106,7 +106,7 @@ namespace LuxMaster
                 // way that I used in the combo class
                 Menu = Config.Menu.AddSubMenu("Harass");
                 Menu.Add("harassUseQ", new CheckBox("Use Q",false));
-                Menu.Add("harassUseE", new CheckBox("Use E"));
+                Menu.Add("harassUseE", new CheckBox("Use E",false));
                 Menu.Add("harassUseR", new CheckBox("Use R", false)); // Default false
 
                 // Adding a slider, we have a little more options with them, using {0} {1} and {2}
@@ -144,7 +144,7 @@ namespace LuxMaster
                 // Here is another option on how to use the menu, but I prefer the
                 // way that I used in the combo class
                 Menu = Config.Menu.AddSubMenu("Lane Clear");
-                Menu.Add("laneclearUseQ", new CheckBox("Use Q"));
+                Menu.Add("laneclearUseQ", new CheckBox("Use Q",false));
                 Menu.Add("laneclearUseE", new CheckBox("Use E"));
                 Menu.Add("laneclearUseR", new CheckBox("Use R", false)); // Default false
 
@@ -183,7 +183,7 @@ namespace LuxMaster
                 // Here is another option on how to use the menu, but I prefer the
                 // way that I used in the combo class
                 Menu = Config.Menu.AddSubMenu("Jungle Clear");
-                Menu.Add("jungleclearUseQ", new CheckBox("Use Q"));
+                Menu.Add("jungleclearUseQ", new CheckBox("Use Q",false));
                 Menu.Add("jungleclearUseE", new CheckBox("Use E"));
                 Menu.Add("jungleclearUseR", new CheckBox("Use R", false)); // Default false
 

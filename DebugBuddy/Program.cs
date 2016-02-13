@@ -3,6 +3,8 @@ using EloBuddy;
 using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
+using EloBuddy.SDK;
+using System.Linq;
 
 namespace DebugBuddy
 {
@@ -18,11 +20,19 @@ namespace DebugBuddy
         {
 
             // Listen to events we need
-            Drawing.OnDraw += OnDraw;
-            Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
-            Interrupter.OnInterruptableSpell += Interrupter_OnInterruptableSpell;
-            Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
-            Obj_AI_Base.OnBuffGain += Obj_AI_Base_OnBuffGain;
+            Game.OnTick += Game_OnTick;
+            //Drawing.OnDraw += OnDraw;
+           // Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
+            //Interrupter.OnInterruptableSpell += Interrupter_OnInterruptableSpell;
+           // Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
+           // Obj_AI_Base.OnBuffGain += Obj_AI_Base_OnBuffGain;
+        }
+
+        private static void Game_OnTick(EventArgs args)
+        {
+            var target = TargetSelector.GetTarget(1500, DamageType.Magical);
+            Chat.Print("Target name: " + target.Name + " - Target Health: " + target.Health + "- Target Prediction Health: " + Prediction.Health.GetPrediction(target, 100));
+            throw new NotImplementedException();
         }
 
         private static void Obj_AI_Base_OnBuffGain(Obj_AI_Base sender, Obj_AI_BaseBuffGainEventArgs args)
